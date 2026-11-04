@@ -1,0 +1,130 @@
+.board-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+#board {
+  display: grid;
+  gap: 0;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  width: 100%;
+  background: var(--surface-muted);
+  overflow: hidden;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: none;
+  cursor: grab;
+}
+#board:active { cursor: grabbing; }
+
+.cell {
+  width: auto;
+  height: auto;
+  min-width: 0;
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  position: relative;
+}
+
+.cell-wall {
+  background: var(--wood-dark);
+}
+
+.cell-floor {
+  background: var(--wood-light);
+}
+
+.cell-target {
+  background: var(--wood-light);
+}
+.cell-target::after {
+  content: '';
+  position: absolute;
+  width: 30%;
+  height: 30%;
+  border-radius: 50%;
+  background: rgba(192, 57, 43, 0.3);
+}
+
+.cell-box {
+  background: var(--wood-light);
+}
+.cell-box::before {
+  content: '';
+  position: absolute;
+  width: 78%;
+  height: 78%;
+  border-radius: 4px;
+  background: #d4a574;
+  border: 2px solid #8b5a2b;
+}
+
+.cell-box-on-target::before {
+  background: #6aaa64;
+  border-color: #4a7a44;
+}
+
+.cell-player {
+  background: var(--wood-light);
+}
+.cell-player::before {
+  content: '';
+  position: absolute;
+  width: 68%;
+  height: 68%;
+  border-radius: 50%;
+  background: var(--accent-red);
+  border: 2px solid #8b2a1f;
+}
+
+.level-select {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 4px;
+}
+.level-btn {
+  min-height: 40px;
+  padding: 7px 4px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--ink);
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 12px;
+  transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.15s;
+}
+.level-btn:active { transform: translateY(1px); }
+.level-btn:hover { background: var(--bg); }
+.level-btn.active {
+  background: var(--game-accent);
+  border-color: var(--game-accent);
+  color: white;
+}
+.level-btn.solved {
+  background: #6aaa64;
+  border-color: #4a7a44;
+  color: white;
+}
+
+.reset-btn { flex: 1; }
+.reset-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.stat-value { font-size: 24px; }
+
+@media (max-width: 800px) {
+  .board-wrap { width: 100%; }
+  #board { max-width: 100%; }
+  .controls { max-width: 520px; }
+}

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="堆塔小游戏：看准时机放下移动方块，保持塔身平稳，挑战最高层数。">
+  <title>堆塔</title>
+  <link rel="stylesheet" href="/shared/theme.css">
+  <link rel="stylesheet" href="/shared/game.css">
+  <link rel="stylesheet" href="/stack/stack.css">
+</head>
+<body>
+  <script type="module" src="/shared/game-runtime.js"></script>
+  <main class="game game-fun stack-game">
+    <header class="game-header">
+      <h1>堆塔</h1>
+      <a class="back" href="/fun/">← 返回趣味</a>
+    </header>
+
+    <section class="game-body">
+      <div class="board-wrap stack-board-wrap">
+        <canvas id="canvas" width="420" height="640" aria-label="堆塔游戏画布"></canvas>
+      </div>
+
+      <aside class="controls">
+        <div class="stats">
+          <div class="stat-item">
+            <div class="stat-value" id="score">0</div>
+            <div class="stat-label">层数</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value" id="best">0</div>
+            <div class="stat-label">最高</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value" id="combo">0</div>
+            <div class="stat-label">连续完美</div>
+          </div>
+        </div>
+
+        <div class="status" id="status" aria-live="polite">点击画面开始建塔</div>
+
+        <div class="hint">
+          <div class="label">玩法</div>
+          <p>看准时机<b>点击画面</b>或按<b>空格键</b>放下方块。超出塔身的部分会被削掉，完全错开则挑战结束；精准重合可以保持原有宽度。</p>
+        </div>
+
+        <button type="button" id="restart" class="reset-btn">重新开始</button>
+      </aside>
+    </section>
+  </main>
+
+  <script type="module" src="/stack/stack.js"></script>
+</body>
+</html>

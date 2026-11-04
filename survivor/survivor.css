@@ -1,0 +1,26 @@
+.survivor-game { --game-accent: #b83b4b; --game-accent-soft: rgba(184, 59, 75, .12); }
+.survivor-layout { display: grid; grid-template-columns: minmax(0, 1fr) 245px; gap: 26px; align-items: start; }
+.survivor-stage { position: relative; min-width: 0; overflow: hidden; border: 1px solid var(--border); background: #142b2b; box-shadow: var(--shadow); }
+#arena { display: block; width: 100%; height: auto; aspect-ratio: 18 / 13; touch-action: none; }
+.arena-cover, .upgrade-screen { position: absolute; inset: 0; display: grid; place-content: center; gap: 13px; padding: 24px; background: rgba(11, 27, 28, .76); color: #f8f1de; text-align: center; }
+.arena-cover h2, .upgrade-screen h2 { margin: 0; font-family: var(--font-title); font-size: 38px; }
+.arena-cover p { max-width: 330px; margin: 0 0 8px; color: rgba(248,241,222,.78); line-height: 1.6; }
+.arena-cover .reset-btn { justify-self: center; }
+.hidden { display: none; }
+.upgrade-screen { align-content: center; }
+.upgrade-screen > p { margin: 0; color: #f4be65; font-size: 13px; font-weight: 700; }
+.upgrade-list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; width: min(94vw, 650px); margin-top: 5px; }
+.upgrade-choice { min-height: 128px; padding: 13px 10px; border: 1px solid rgba(244,190,101,.5); border-top: 3px solid #f4be65; border-radius: 5px; background: rgba(248,241,222,.96); color: #172b2a; cursor: pointer; text-align: left; }
+.upgrade-choice b { display: block; margin-bottom: 6px; color: #b83b4b; font-size: 19px; }
+.upgrade-choice span { color: #53615c; font-size: 13px; line-height: 1.45; }
+.survivor-panel { display: grid; gap: 13px; padding: 17px; border-top: 3px solid var(--game-accent); background: var(--surface); box-shadow: var(--shadow-soft); }
+.survivor-stat { display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid var(--border); padding-bottom: 8px; color: var(--muted); font-size: 13px; }
+.survivor-stat b { color: var(--ink); font-family: var(--font-title); font-size: 21px; }
+.meter span { display: block; margin-bottom: 5px; color: var(--muted); font-size: 12px; }
+.meter i { display: block; height: 8px; overflow: hidden; background: var(--surface-muted); }
+.meter em { display: block; height: 100%; width: 100%; background: var(--game-accent); transition: width .15s linear; }
+.meter + .meter em { background: #e8ad39; }
+.survivor-hint { border-top: 1px solid var(--border); padding-top: 12px; color: var(--muted); font-size: 13px; line-height: 1.55; }
+.survivor-hint b { color: var(--ink); font-size: 12px; }.survivor-hint p { margin: 5px 0 0; }
+@media (max-width: 760px) { .survivor-layout { grid-template-columns: 1fr; gap: 16px; } .survivor-panel { grid-template-columns: repeat(3, 1fr); } .survivor-hint, .survivor-panel .reset-btn { grid-column: 1 / -1; } }
+@media (max-width: 520px) { .upgrade-list { grid-template-columns: 1fr; width: min(88vw, 330px); } .upgrade-choice { min-height: 70px; } .survivor-panel { grid-template-columns: 1fr 1fr; } }

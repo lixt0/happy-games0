@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="黑白棋人机对战：翻转棋子，争夺棋盘。">
+  <title>黑白棋 - 快乐小游戏</title>
+  <link rel="stylesheet" href="/shared/theme.css">
+  <link rel="stylesheet" href="/shared/game.css">
+  <link rel="stylesheet" href="/othello/othello.css?v=1">
+</head>
+<body>
+  <script type="module" src="/shared/game-runtime.js"></script>
+  <main class="game game-board othello-game">
+    <header class="game-header">
+      <h1>黑白棋</h1>
+      <div class="ot-header-actions"><button id="rules-button" class="ot-rules-button" type="button">规则</button><a class="back" href="/board/">返回棋类</a></div>
+    </header>
+    <section class="ot-layout" aria-label="黑白棋对局">
+      <div class="ot-board-wrap"><div id="board" class="ot-board" role="grid" aria-label="黑白棋棋盘"></div></div>
+      <aside class="ot-side">
+        <div class="ot-score" aria-label="比分"><div class="ot-score-item"><span class="ot-disc black"></span><strong id="black-score">2</strong><small>你</small></div><div class="ot-score-item"><span class="ot-disc white"></span><strong id="white-score">2</strong><small>AI</small></div></div>
+        <p id="status" class="status" aria-live="polite"></p>
+        <div class="ot-control-group"><span class="ot-label">难度</span><div class="difficulty-buttons"><button class="diff-btn active" data-difficulty="easy" type="button">入门</button><button class="diff-btn" data-difficulty="medium" type="button">标准</button><button class="diff-btn" data-difficulty="hard" type="button">高手</button></div></div>
+        <div class="button-row"><button id="undo-button" class="diff-btn" type="button">悔棋</button><button id="restart-button" class="reset-btn" type="button">新对局</button></div>
+        <div class="ot-tip">占住角落最稳固；无棋可下时会自动让行。</div>
+      </aside>
+    </section>
+  </main>
+  <div id="rules-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="rules-title">
+    <div class="modal-backdrop" data-close-rules></div>
+    <div class="modal-card ot-rules-modal"><div class="ot-rules-heading"><h2 id="rules-title" class="modal-title">黑白棋规则</h2><button id="close-rules" class="ot-close" type="button" aria-label="关闭">×</button></div><ol><li>你执黑棋，黑棋先下。</li><li>落子必须夹住一条或多条相连的白棋，夹住的棋子会翻成黑棋。</li><li>没有合法落子时自动跳过回合。</li><li>棋盘填满或双方都无棋可下时，对局结束，棋子更多的一方获胜。</li></ol></div>
+  </div>
+  <script type="module" src="/shared/a11y.js"></script>
+  <script type="module" src="/othello/othello.js?v=1"></script>
+</body>
+</html>

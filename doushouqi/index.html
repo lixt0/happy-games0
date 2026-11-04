@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="经典斗兽棋人机对战，包含河流、陷阱、兽穴与狮虎跳河规则。">
+  <title>斗兽棋 · 快乐小游戏</title>
+  <link rel="stylesheet" href="/shared/theme.css">
+  <link rel="stylesheet" href="/shared/game.css">
+  <link rel="stylesheet" href="/doushouqi/doushouqi.css">
+</head>
+<body>
+  <script type="module" src="/shared/game-runtime.js"></script>
+  <main class="game game-board">
+    <header class="game-header">
+      <h1>斗兽棋</h1>
+      <a class="back" href="/board/">← 返回棋类</a>
+    </header>
+
+    <section class="game-body doushouqi-body">
+      <div class="board-wrap">
+        <canvas id="board" width="504" height="648" tabindex="0" aria-label="斗兽棋棋盘，你执红方，电脑执蓝方"></canvas>
+      </div>
+
+      <aside class="controls">
+        <div class="difficulty">
+          <div class="label">难度</div>
+          <div class="difficulty-buttons" role="radiogroup" aria-label="难度选择">
+            <button type="button" role="radio" class="diff-btn" data-difficulty="easy" aria-checked="false">简单</button>
+            <button type="button" role="radio" class="diff-btn active" data-difficulty="medium" aria-checked="true">中等</button>
+            <button type="button" role="radio" class="diff-btn" data-difficulty="hard" aria-checked="false">困难</button>
+          </div>
+        </div>
+
+        <div class="stats">
+          <div class="stat-item">
+            <div class="stat-value" id="turn">红</div>
+            <div class="stat-label">行棋方</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value" id="round">1</div>
+            <div class="stat-label">回合</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value" id="captured">0</div>
+            <div class="stat-label">已吃</div>
+          </div>
+        </div>
+
+        <div class="status" id="status" aria-live="polite">轮到你了，请选择红方棋子</div>
+        <div class="ai-note" id="ai-note">你执红方，电脑执蓝方</div>
+
+        <div class="button-row">
+          <button type="button" id="undo" class="reset-btn" disabled>悔棋</button>
+          <button type="button" id="reset" class="reset-btn">重开</button>
+        </div>
+
+        <div class="terrain-legend" aria-label="棋盘地形图例">
+          <span><i class="terrain-water"></i>河流</span>
+          <span><i class="terrain-trap"></i>陷阱</span>
+          <span><i class="terrain-den"></i>兽穴</span>
+        </div>
+
+        <div class="hint">
+          <p><b>强弱：</b>象 ＞ 狮 ＞ 虎 ＞ 豹 ＞ 狼 ＞ 狗 ＞ 猫 ＞ 鼠，鼠可吃象。</p>
+          <p><b>地形：</b>鼠可入河；狮虎在河中无鼠时可跳河；进入敌方兽穴即胜。</p>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <div class="modal hidden" id="win-modal" role="dialog" aria-modal="true" aria-labelledby="win-title">
+    <div class="modal-backdrop"></div>
+    <div class="modal-card">
+      <h2 id="win-title" class="modal-title">对局结束</h2>
+      <p class="modal-text" id="win-text"></p>
+      <div class="modal-actions">
+        <button type="button" id="win-new" class="reset-btn">再来一局</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="/shared/a11y.js"></script>
+  <script type="module" src="/doushouqi/doushouqi.js"></script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+.doushouqi-body {
+  grid-template-columns: minmax(0, 1fr) 280px;
+}
+
+#board {
+  display: block;
+  width: min(86vw, 504px);
+  height: auto;
+  aspect-ratio: 7 / 9;
+  overflow: hidden;
+  background: var(--wood-light);
+  border: 1px solid var(--wood-dark);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+#board:focus-visible {
+  outline-color: var(--game-accent);
+}
+
+.ai-note {
+  min-height: 38px;
+  padding: 9px 11px;
+  background: var(--surface-muted);
+  border-radius: 4px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.button-row .reset-btn {
+  flex: 1;
+}
+
+.button-row #undo {
+  border-color: var(--border);
+  background: var(--surface);
+  color: var(--ink);
+}
+
+.button-row #undo:hover:not(:disabled) {
+  border-color: var(--game-accent);
+  color: var(--game-accent);
+  box-shadow: none;
+}
+
+.terrain-legend {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 5px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+
+.terrain-legend span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  color: var(--muted);
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+.terrain-legend i {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+}
+
+.terrain-water { background: #83b8ba; }
+.terrain-trap { background: #d9b36c; }
+.terrain-den { background: #586c66; }
+
+.status.win { color: var(--success); }
+.status.lose { color: var(--danger); }
+.status.thinking { color: var(--accent-blue); }
+
+@media (max-width: 800px) {
+  .doushouqi-body {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 10px;
+  }
+
+  #board {
+    width: min(100%, 504px);
+  }
+
+  .controls {
+    max-width: 504px;
+  }
+
+  .ai-note {
+    min-height: 34px;
+    padding: 7px 9px;
+  }
+
+  .terrain-legend {
+    padding-top: 8px;
+  }
+}

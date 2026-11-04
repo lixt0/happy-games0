@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>五子棋</title>
+  <link rel="stylesheet" href="/shared/theme.css">
+  <link rel="stylesheet" href="/shared/game.css">
+  <link rel="stylesheet" href="/gomoku/gomoku.css">
+</head>
+<body>
+  <script type="module" src="/shared/game-runtime.js"></script>
+  <main class="game game-board">
+    <header class="game-header">
+      <h1>五子棋</h1>
+      <a class="back" href="/board/">← 返回棋类</a>
+    </header>
+
+    <section class="game-body">
+      <div class="board-wrap">
+        <canvas id="board" width="600" height="600" tabindex="0" aria-label="五子棋棋盘" aria-describedby="board-help"></canvas>
+        <p id="board-help" class="sr-only">使用鼠标点击或方向键选择落点，按 Enter 或空格落子。</p>
+      </div>
+
+      <aside class="controls">
+        <div class="difficulty">
+          <div class="label">难度</div>
+          <div class="difficulty-buttons" role="radiogroup" aria-label="难度选择">
+            <button type="button" role="radio" data-difficulty="easy" class="diff-btn" aria-checked="false">简单</button>
+            <button type="button" role="radio" data-difficulty="medium" class="diff-btn active" aria-checked="true">中等</button>
+            <button type="button" role="radio" data-difficulty="hard" class="diff-btn" aria-checked="false">困难</button>
+          </div>
+        </div>
+
+        <div class="status" id="status" aria-live="polite">轮到你了</div>
+
+        <button type="button" id="reset" class="reset-btn">重开</button>
+      </aside>
+    </section>
+  </main>
+
+  <div class="modal hidden" id="win-modal" role="dialog" aria-modal="true" aria-labelledby="win-title">
+    <div class="modal-backdrop"></div>
+    <div class="modal-card">
+      <h2 id="win-title" class="modal-title">完成！</h2>
+      <p class="modal-text" id="win-text"></p>
+      <div class="modal-actions">
+        <button type="button" id="win-new" class="reset-btn">再来一局</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="/shared/a11y.js"></script>
+  <script type="module" src="/gomoku/gomoku.js"></script>
+</body>
+</html>

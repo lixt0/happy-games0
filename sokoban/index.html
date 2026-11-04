@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>推箱子</title>
+  <link rel="stylesheet" href="/shared/theme.css">
+  <link rel="stylesheet" href="/shared/game.css">
+  <link rel="stylesheet" href="/sokoban/sokoban.css">
+</head>
+<body>
+  <script type="module" src="/shared/game-runtime.js"></script>
+  <main class="game game-puzzle sokoban">
+    <header class="game-header">
+      <h1>推箱子</h1>
+      <a class="back" href="/puzzle/">← 返回益智</a>
+    </header>
+
+    <section class="game-body">
+      <div class="board-wrap">
+        <div id="board" aria-label="推箱子棋盘"></div>
+      </div>
+
+      <aside class="controls">
+        <div class="level-picker">
+          <div class="label">选择关卡</div>
+          <div class="level-select" id="level-select"></div>
+        </div>
+
+        <div class="stats">
+          <div class="stat-item">
+            <div class="stat-value" id="move-count">0</div>
+            <div class="stat-label">步数</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value" id="push-count">0</div>
+            <div class="stat-label">推数</div>
+          </div>
+        </div>
+
+        <div class="button-row">
+          <button type="button" id="undo-btn" class="reset-btn" disabled>撤销</button>
+          <button type="button" id="reset-btn" class="reset-btn">重玩</button>
+        </div>
+
+        <div class="hint">
+          <div class="label">玩法</div>
+          <p>用 <b>方向键</b> 或 <b>WASD</b> 移动角色，把所有箱子推到红色标记位置。箱子推到角落会卡住！按 <b>Z</b> 撤销。</p>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <div class="modal hidden" id="win-modal" role="dialog" aria-modal="true" aria-labelledby="win-title">
+    <div class="modal-backdrop"></div>
+    <div class="modal-card">
+      <h2 id="win-title" class="modal-title">过关！</h2>
+      <p class="modal-text" id="win-stats"></p>
+      <div class="modal-actions">
+        <button type="button" id="win-retry" class="reset-btn">重玩本关</button>
+        <button type="button" id="win-next" class="reset-btn">下一关</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="/shared/a11y.js"></script>
+  <script type="module" src="/sokoban/sokoban.js"></script>
+</body>
+</html>

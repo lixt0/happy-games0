@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="在线飞行棋：房主建房 2-4 人，空座 AI 补位，经典跳格飞格规则。">
+  <title>飞行棋 · 快乐小游戏</title>
+  <link rel="stylesheet" href="/shared/theme.css">
+  <link rel="stylesheet" href="/shared/game.css">
+  <link rel="stylesheet" href="/feixingqi/feixingqi.css?v=board-polish-1">
+</head>
+<body>
+  <script type="module" src="/shared/game-runtime.js"></script>
+  <main class="game game-board">
+    <header class="game-header">
+      <h1>飞行棋</h1>
+      <div class="fx-header-actions">
+        <button id="btn-rules" class="fx-rules-button" type="button" aria-haspopup="dialog">规则</button>
+        <a class="back" href="/board/">← 返回棋类</a>
+      </div>
+    </header>
+
+    <section id="screen-lobby" class="fx-screen">
+      <div class="fx-lobby">
+        <div class="fx-panel">
+          <h3>创建房间</h3>
+          <label>房间密码 <input id="create-pass" type="password" maxlength="12" placeholder="设一个密码"></label>
+          <label>人数
+            <select id="create-seats">
+              <option value="2">2 人</option>
+              <option value="3">3 人</option>
+              <option value="4" selected>4 人</option>
+            </select>
+          </label>
+          <button id="btn-create" class="reset-btn">创建房间</button>
+        </div>
+        <div class="fx-panel">
+          <h3>加入房间</h3>
+          <label>房间号 <input id="join-code" type="text" maxlength="4" inputmode="numeric" placeholder="4 位房间号"></label>
+          <label>房间密码 <input id="join-pass" type="text" maxlength="12" placeholder="输入密码"></label>
+          <button id="btn-join" class="reset-btn">加入房间</button>
+        </div>
+      </div>
+      <p id="lobby-error" class="fx-error hidden"></p>
+    </section>
+
+    <section id="screen-room" class="fx-screen hidden">
+      <div class="fx-room-head">
+        <span>房间号：<b id="room-code"></b></span>
+        <span id="room-phase"></span>
+      </div>
+      <div id="seat-list" class="fx-seats"></div>
+      <button id="btn-start" class="reset-btn hidden">开始游戏（空座补 AI）</button>
+    </section>
+
+    <section id="screen-game" class="fx-screen hidden">
+      <div class="fx-game-body">
+        <div class="board-wrap"><div id="board" class="fx-board"></div></div>
+        <aside class="fx-side">
+          <div id="turn-indicator" class="fx-turn"></div>
+          <button id="btn-roll" class="fx-dice" disabled>🎲</button>
+          <div id="event-log" class="fx-log"></div>
+        </aside>
+      </div>
+      <div id="win-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="win-title">
+        <div class="modal-backdrop"></div>
+        <div class="modal-card">
+          <h2 id="win-title" class="modal-title">对局结束</h2>
+          <p id="win-text" class="modal-text"></p>
+          <div class="modal-actions"><button id="win-back" class="reset-btn">返回大厅</button></div>
+        </div>
+      </div>
+      <div id="rules-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="rules-title">
+        <div class="modal-backdrop" data-close-rules></div>
+        <div class="modal-card fx-rules-modal">
+          <div class="fx-rules-heading">
+            <h2 id="rules-title" class="modal-title">飞行棋规则</h2>
+            <button id="btn-close-rules" class="fx-icon-button" type="button" aria-label="关闭规则">×</button>
+          </div>
+          <ol class="fx-rules-list">
+            <li>轮到你时点击骰子。机场里的飞机只有掷出 6 才能起飞。</li>
+            <li>掷出 6 后可以再掷一次；连续三个 6 则本回合作废。</li>
+            <li>落在对手飞机所在的外圈格，会把对手送回机场。</li>
+            <li>落到本方跳格会前进 4 格；落到本方飞格会飞到对侧。</li>
+            <li>进入终点跑道后必须刚好走到终点，四架飞机全部到家即获胜。</li>
+          </ol>
+          <p class="fx-rules-note">空座由 AI 补位。AI 未掷到 6 时同样不能让飞机起飞。</p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script type="module" src="/shared/a11y.js"></script>
+  <script type="module" src="/feixingqi/feixingqi.js?v=af942ac"></script>
+</body>
+</html>

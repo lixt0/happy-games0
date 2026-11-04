@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="快乐小游戏：五子棋、跳跳鸟、数独、推箱子、模拟徒步、迷宫逃脱、华夏帝王等经典小游戏合集，闲暇时光的好伴侣。">
+  <link rel="alternate" type="application/rss+xml" title="快乐小游戏" href="/rss.xml">
+  <title>快乐小游戏</title>
+  <link rel="stylesheet" href="/shared/theme.css">
+  <link rel="stylesheet" href="/shared/cards.css">
+  <style>
+    .landing {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 24px 24px 30px;
+    }
+    .site-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 28px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border);
+    }
+    .brand-mark {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      color: var(--ink);
+      font-family: var(--font-title);
+      font-size: 21px;
+    }
+    .brand-mark::before {
+      width: 10px;
+      height: 10px;
+      border: 2px solid var(--accent-red);
+      border-radius: 50%;
+      box-shadow: 12px 0 0 -2px var(--accent-gold), 6px 9px 0 -2px var(--accent-teal);
+      content: '';
+    }
+    .daily-note { color: var(--muted); font-size: 13px; }
+    .landing h1 {
+      margin: 0 0 18px;
+      color: var(--ink);
+      /* 10 个全角字要在一行内放得下：字号上限 ≈ 可用宽度 / 10。
+         用 8vw 随视口收缩，320px 窄屏也刚好不折行（不会把「意思」拆开） */
+      font-size: clamp(27px, 8vw, 68px);
+      line-height: 1.06;
+    }
+    .landing .subtitle {
+      max-width: 560px;
+      margin: 0 0 26px;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.65;
+    }
+    /* 首屏改单栏：标题需要足够宽度才能整行不断词（窄栏里「意思」会被拆开） */
+    .showcase {
+      display: block;
+      margin-bottom: 30px;
+    }
+    .showcase-copy {
+      max-width: 960px;
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      margin-bottom: 16px;
+      color: var(--accent-red);
+      font-size: 11px;
+      font-weight: 700;
+    }
+    .eyebrow::before { width: 22px; height: 2px; background: currentColor; content: ''; }
+    .random-play {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 13px 21px;
+      border: 1px solid var(--button-primary-bg);
+      border-radius: 6px;
+      background: var(--button-primary-bg);
+      color: #ffffff;
+      cursor: pointer;
+      font: inherit;
+      font-size: 15px;
+      transition: transform .2s ease, background .2s ease;
+    }
+    .random-play:hover { background: var(--button-primary-hover); border-color: var(--button-primary-hover); transform: translateY(-2px); }
+    .random-play b { font-size: 20px; line-height: 0; }
+    /* 推荐位从右侧移到下方：三张独立卡（不再是一个连体框） */
+    .featured-grid {
+      display: grid;
+      grid-template-columns: 1.16fr 1fr 1fr;
+      gap: 16px;
+      margin-top: 40px;
+    }
+    .featured-game {
+      position: relative;
+      display: grid;
+      grid-template-rows: auto auto;
+      align-content: space-between;
+      min-width: 0;
+      min-height: 236px;
+      padding: 18px;
+      overflow: hidden;
+      color: var(--ink);
+      text-decoration: none;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: var(--surface);
+      box-shadow: var(--shadow-soft);
+      transition: background .2s ease, border-color .2s ease;
+    }
+    .featured-game:hover {
+      border-color: color-mix(in srgb, var(--feature-accent) 34%, var(--border));
+      background: color-mix(in srgb, var(--feature-accent) 7%, var(--surface));
+    }
+    .featured-game .feature-art {
+      position: absolute;
+      right: -20px;
+      bottom: -22px;
+      width: 145px;
+      height: 145px;
+      opacity: .92;
+      transform: rotate(-5deg);
+      transition: transform .25s ease;
+    }
+    .featured-game:first-child .feature-art { width: 180px; height: 180px; }
+    .featured-game:hover .feature-art { transform: rotate(0) scale(1.05); }
+    .featured-game .feature-art svg { display: block; width: 100%; height: 100%; border-radius: 7px; }
+    .feature-copy { position: relative; z-index: 1; max-width: 180px; }
+    .feature-tag { display: block; margin-bottom: 8px; color: var(--feature-accent-text, var(--feature-accent)); font-size: 11px; font-weight: 700; }
+    .feature-copy h2 { margin: 0 0 7px; font-size: 25px; line-height: 1.1; }
+    .feature-copy p {
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      max-height: 3.1em;
+      margin: 0;
+      overflow: hidden;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.55;
+    }
+    .feature-go { justify-self: start; color: var(--feature-accent-text, var(--feature-accent)); font-family: var(--font-action); font-size: 13px; font-weight: 700; }
+    .section-heading {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin: 0 0 12px;
+    }
+    .section-heading h2 { margin: 0; font-size: 24px; }
+    .section-heading span { color: var(--muted); font-size: 12px; }
+    #section-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      animation: fadeIn 0.5s ease-out;
+    }
+    #section-grid .section-card { min-height: 104px; padding: 15px; gap: 11px; box-shadow: none; }
+    #section-grid .section-card::before { inset: 10px auto 10px 0; width: 3px; }
+    #section-grid .section-card .sc-icon { width: 45px; height: 45px; flex-basis: 45px; border-radius: 6px; }
+    #section-grid .section-card .sc-icon svg { width: 32px; height: 32px; }
+    #section-grid .section-card .sc-title { margin-bottom: 2px; font-size: 20px; }
+    #section-grid .section-card .sc-desc { margin: 0; font-size: 12px; }
+    #section-grid .section-card .sc-games, #section-grid .section-card .sc-arrow { display: none; }
+    footer {
+      margin-top: 32px;
+      padding-top: 18px;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      font-size: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    footer .footer-links {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+    footer a {
+      color: var(--muted);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 44px;
+      min-height: 44px;
+      gap: 6px;
+      transition: color 0.2s, transform 0.2s;
+    }
+    /* 上面的 display:inline-flex 优先级高过 UA 的 [hidden]{display:none}，
+       会把「管理台」入口暴露给未登录访客，需显式补回 */
+    footer a[hidden] { display: none; }
+    footer a:hover { color: var(--ink); transform: translateY(-1px); }
+    footer svg { width: 18px; height: 18px; display: block; }
+
+    /* 推荐位三列收窄后每张卡只有 ~240px，缩到两列更好读；
+       3 张卡进 2 列会空一格，让第 3 张横跨整行补上 */
+    @media (max-width: 900px) {
+      .featured-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .featured-game { min-height: 200px; }
+      .featured-game:nth-child(3) {
+        grid-column: 1 / -1;
+        align-content: start;
+        min-height: 0;
+        padding: 20px 24px;
+      }
+      .featured-game:first-child .feature-art { width: 148px; height: 148px; }
+    }
+    @media (max-width: 850px) {
+      #section-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 600px) {
+      .landing { padding: 18px 14px 24px; }
+      .site-bar { margin-bottom: 24px; }
+      .daily-note { display: none; }
+      .landing .subtitle { margin-bottom: 20px; font-size: 14px; }
+      .showcase { margin-bottom: 24px; }
+      .featured-grid { grid-template-columns: minmax(0, 1fr); gap: 10px; margin-top: 22px; }
+      .featured-game { min-height: 150px; padding: 16px; }
+      /* 单列时 nth-child(3) 的横跨/内边距规则要还原，否则三张卡不一致 */
+      .featured-game:nth-child(3) { grid-column: auto; min-height: 150px; padding: 16px; }
+      .featured-game .feature-art, .featured-game:first-child .feature-art { width: 108px; height: 108px; right: -10px; bottom: -14px; }
+      .section-heading { margin-top: 24px; }
+      #section-grid { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+      #section-grid .section-card { min-height: 78px; }
+      footer { margin-top: 28px; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+  <main class="landing">
+    <div class="site-bar">
+      <div class="brand-mark">快乐小游戏</div>
+      <div class="daily-note">不必找游戏，直接开始一局</div>
+    </div>
+    <section class="showcase" aria-labelledby="home-title">
+      <div class="showcase-copy">
+        <div class="eyebrow">TODAY'S PLAYLIST</div>
+        <h1 id="home-title">这一刻，玩点有意思的</h1>
+        <p class="subtitle">不用下载，不用排队。选一款，给自己留几分钟的专注和快乐。</p>
+        <button class="random-play" type="button" id="random-play"><b>↗</b> 随机开一局</button>
+      </div>
+      <div class="featured-grid" id="featured-grid" aria-label="今日推荐游戏"></div>
+    </section>
+    <div class="section-heading">
+      <h2>按心情选</h2>
+      <span>四种玩法，随时切换</span>
+    </div>
+    <div id="section-grid"></div>
+    <footer>
+      <div>© 2026 Zhou Jun · Built with Cloudflare</div>
+      <div class="footer-links">
+        <a href="/adminPages/" id="admin-link" hidden>管理台</a>
+        <a href="/login.html" id="auth-link" aria-label="登录">登录</a>
+        <a href="https://github.com/zhoujungis" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.4 3-.405 1.02.005 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+        </a>
+        <a href="mailto:no-reply@gmail.com" aria-label="Email">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+        </a>
+        <a href="https://zhoujungis.github.io/" target="_blank" rel="noopener" aria-label="Blog">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
+        </a>
+      </div>
+    </footer>
+  </main>
+  <script type="module">
+    import { renderHome, sections } from '/shared/landing.js';
+    renderHome();
+    const games = sections.flatMap(section => section.games);
+    const sectionOf = new Map(sections.flatMap(s => s.games.map(g => [g.id, s.id])));
+    const SECTION_TAG = { board: '对弈一局', puzzle: '烧脑一刻', fun: '随手把玩', history: '重温历史' };
+    // 每次打开随机抽 3 款做推荐位(不重复)
+    const pool = [...games];
+    const featured = [];
+    while (featured.length < 3 && pool.length) {
+      featured.push(pool.splice(Math.floor(Math.random() * pool.length), 1)[0]);
+    }
+    const featuredRoot = document.getElementById('featured-grid');
+    featuredRoot.innerHTML = featured.map(game => `<a class="featured-game" href="${game.href}" style="--feature-accent: ${game.accent}">
+      <div class="feature-copy"><span class="feature-tag">${SECTION_TAG[sectionOf.get(game.id)] || '推荐'}</span><h2>${game.name}</h2><p>${game.description}</p></div>
+      <span class="feature-art">${game.previewSvg}</span><span class="feature-go">开始游戏 →</span>
+    </a>`).join('');
+    document.getElementById('random-play').addEventListener('click', () => {
+      const game = games[Math.floor(Math.random() * games.length)];
+      window.location.href = game.href;
+    });
+    const el = document.getElementById('auth-link');
+    try {
+      const res = await fetch('/api/me');
+      if (res.ok) {
+        const data = await res.json();
+        if (data.username) {
+          if (data.username === 'zhoujun') document.getElementById('admin-link').hidden = false;
+          el.textContent = `${data.username} · 退出`;
+          el.title = `已登录：${data.username}（点击退出）`;
+          el.addEventListener('click', async (e) => {
+            e.preventDefault();
+            await fetch('/api/logout', { method: 'POST' });
+            window.location.href = '/login.html';
+          });
+        }
+      }
+    } catch {}
+  </script>
+</body>
+</html>

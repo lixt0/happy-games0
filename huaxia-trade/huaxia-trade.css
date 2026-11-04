@@ -1,0 +1,45 @@
+.trade-game { --game-accent: #a34a32; --game-accent-soft: rgba(163, 74, 50, .1); }
+.subtitle { margin: 4px 0 0 15px; color: var(--muted); font-size: 13px; }
+.trade-header-actions { display:flex; align-items:center; gap:14px; }
+.rules-btn { min-height:40px; padding:8px 13px; border:1px solid var(--border); border-radius:6px; background:var(--surface); color:var(--ink); cursor:pointer; }
+.rules-btn:hover { border-color:var(--game-accent); color:var(--game-accent); }
+.trade-layout { display:grid; grid-template-columns:minmax(0, 1fr) 290px; gap:24px; align-items:start; }
+.map-frame { padding:15px; border:1px solid var(--border); border-top:3px solid var(--game-accent); background:var(--surface); box-shadow:var(--shadow-soft); }
+.map-title { display:flex; justify-content:space-between; align-items:center; margin:0 2px 10px; color:var(--ink); font-family:var(--font-title); font-size:20px; }
+.map-title small { color:var(--muted); font-family:var(--font-body); font-size:12px; }
+.trade-map { position:relative; width:100%; aspect-ratio:1.12; overflow:hidden; border:3px solid #9a6a3d; background:#e7d1a0; box-shadow:inset 0 0 0 7px rgba(255,255,255,.2), 0 8px 20px rgba(65,44,24,.16); }
+.trade-map::before { content:''; position:absolute; inset:5% 8%; background:#dfc38b; opacity:.65; clip-path:polygon(15% 8%, 37% 2%, 57% 8%, 78% 12%, 94% 27%, 86% 46%, 95% 67%, 78% 88%, 50% 96%, 29% 88%, 10% 69%, 4% 44%); }
+.map-route { position:absolute; inset:0; width:100%; height:100%; pointer-events:none; }
+.route-line { fill:none; stroke:#9a6a3d; stroke-width:1.3; stroke-dasharray:2 2; opacity:.65; vector-effect:non-scaling-stroke; }
+.route-line.secondary { stroke:#b47e45; stroke-width:.8; opacity:.4; }
+.map-space { position:absolute; transform:translate(-50%,-50%); width:clamp(38px,6.3vw,58px); min-height:38px; padding:3px 2px; border:2px solid #8b5b39; border-radius:9px; background:#f6e7bf; color:#4a3224; cursor:pointer; font-size:clamp(10px,1.25vw,13px); line-height:1.15; box-shadow:0 2px 5px rgba(50,30,15,.22); z-index:2; }
+.map-space:hover { transform:translate(-50%,-50%) scale(1.08); z-index:5; }
+.map-space.city { border-top:5px solid var(--space-color); }
+.map-space.event { border-color:#8c5c8c; background:#ead8eb; }
+.map-space.port,.map-space.pass { border-color:#397b83; background:#d9edef; }
+.map-space.start { border-color:#a43d2f; background:#f1cf9b; font-weight:700; }
+.map-space small { display:block; color:#765947; font-size:10px; }
+.map-space .owner-mark { position:absolute; right:-7px; top:-9px; display:grid; place-items:center; width:18px; height:18px; border-radius:50%; border:2px solid #fff; color:#fff; font-size:11px; font-weight:700; }
+.map-space .level-mark { color:#a34a32; font-size:10px; }
+.on-space { position:absolute; left:50%; bottom:-13px; transform:translateX(-50%); min-width:22px; padding:1px 4px; border:1px solid #fff; border-radius:8px; background:#263c38; color:#fff; font-size:10px; font-weight:700; white-space:nowrap; box-shadow:0 1px 3px rgba(0,0,0,.25); }
+.map-legend { display:flex; flex-wrap:wrap; gap:14px; margin-top:10px; color:var(--muted); font-size:11px; }.map-legend span{display:flex;align-items:center;gap:5px}.legend-dot{width:9px;height:9px;border-radius:50%;display:inline-block}.city-dot{background:#b84b3f}.event-dot{background:#8c5c8c}.port-dot{background:#397b83}
+.trade-side { display:grid; gap:12px; min-width:0; }.turn-card,.player-list,.space-info,.trade-log { border:1px solid var(--border); background:var(--surface); box-shadow:var(--shadow-soft); }
+.turn-card { padding:14px; border-top:3px solid var(--game-accent); font-family:var(--font-title); font-size:18px; }.turn-card small{display:block;margin-top:4px;color:var(--muted);font-family:var(--font-body);font-size:12px}
+.player-list { display:grid; gap:0; }.player-row{display:grid;grid-template-columns:28px 1fr auto;gap:8px;align-items:center;padding:10px;border-bottom:1px solid var(--border)}.player-row:last-child{border-bottom:0}.player-token{display:grid;place-items:center;width:26px;height:26px;border-radius:50%;color:#fff;font-size:12px;font-weight:700}.player-row b{font-size:13px}.player-row small{display:block;color:var(--muted);font-size:11px}.player-money{font-family:var(--font-title);color:var(--game-accent);font-size:16px}.bankrupt{opacity:.43;text-decoration:line-through}
+.space-info { min-height:74px; padding:12px; color:var(--muted); font-size:12px; line-height:1.55; }.space-info h3{margin:0 0 3px;color:var(--ink);font-family:var(--font-title);font-size:20px}.space-info b{color:var(--game-accent)}
+.action-area{display:grid;gap:8px}.roll-btn{min-height:50px;border:0;border-radius:7px;background:var(--game-accent);color:#fff;font-size:18px;cursor:pointer;box-shadow:0 4px 10px var(--game-accent-soft)}.roll-btn:disabled{opacity:.45;cursor:not-allowed}.action-buttons{display:grid;grid-template-columns:1fr 1fr;gap:7px}.action-buttons button{min-height:40px;border:1px solid var(--border);background:var(--surface);color:var(--ink);border-radius:6px;cursor:pointer;font-size:12px}.action-buttons button.primary{background:var(--ink);border-color:var(--ink);color:#fff}.action-buttons button:disabled{opacity:.4;cursor:not-allowed}
+.trade-log{height:142px;overflow:auto;padding:9px;color:var(--muted);font-size:11px;line-height:1.55}.trade-log p{margin:0;padding:3px 0;border-bottom:1px solid var(--border)}
+.trade-modal{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:16px}.trade-modal.hidden{display:none}.trade-modal .modal-backdrop{position:absolute;inset:0;background:rgba(25,20,16,.62);backdrop-filter:blur(3px)}.modal-card{position:relative;width:min(680px,100%);max-height:88vh;overflow:auto;padding:25px;background:var(--surface);border-top:4px solid var(--game-accent);box-shadow:var(--shadow);z-index:1}.modal-heading{display:flex;justify-content:space-between;align-items:start;gap:16px}.modal-heading h2{margin:0;color:var(--ink);font-size:29px}.close-btn{width:40px;height:40px;border:1px solid var(--border);background:var(--surface);color:var(--ink);font-size:24px;line-height:1;cursor:pointer}.rules-columns{display:grid;grid-template-columns:1fr 1fr;gap:24px}.rules-columns h3{margin:18px 0 5px;color:var(--game-accent);font-size:17px}.rules-columns p,.rules-columns li{color:var(--muted);font-size:13px;line-height:1.7}.rules-columns ol,.rules-columns ul{margin:0;padding-left:21px}.result-card{text-align:center;width:min(430px,100%)}.result-card>p{margin:0;color:var(--muted);font-size:12px}.result-card h2{margin:8px 0 18px;color:var(--ink);font-size:30px}.rank-row{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--border);font-size:13px}.rank-row b{color:var(--game-accent)}.result-card .reset-btn{margin-top:20px;width:100%}
+@media (max-width:800px){.trade-layout{grid-template-columns:1fr}.trade-side{grid-template-columns:1fr 1fr}.turn-card,.space-info,.action-area,.trade-log{grid-column:1/-1}.player-list{grid-column:1/-1;grid-template-columns:repeat(2,1fr)}.player-row{border-bottom:1px solid var(--border)}.trade-map{aspect-ratio:1.05}.rules-columns{grid-template-columns:1fr;gap:0}}
+@media (max-width:480px){.trade-game{padding:16px 12px 28px}.game-header{align-items:flex-start}.game-header h1{font-size:31px}.subtitle{margin-left:11px;font-size:11px}.trade-header-actions{gap:7px;flex-direction:column;align-items:flex-end}.map-frame{padding:9px}.map-space{width:39px;min-height:34px;font-size:10px}.map-space small{font-size:9px}.player-list{grid-template-columns:1fr 1fr}.rules-card{padding:18px}.rules-columns p,.rules-columns li{font-size:12px}}
+@media (prefers-color-scheme: dark) {
+  .trade-map { border-color:#574426; background:#2a241a; box-shadow:inset 0 0 0 7px rgba(255,255,255,.05), 0 8px 20px rgba(0,0,0,.35); }
+  .trade-map::before { background:#332b1e; }
+  .map-space { background:#3a3124; color:#e8d9b8; }
+  .map-space.event { border-color:#8c5c8c; background:#3a2c3d; }
+  .map-space.port, .map-space.pass { border-color:#397b83; background:#22383c; }
+  .map-space.start { border-color:#a43d2f; background:#45301f; }
+  .map-space small { color:#c4b294; }
+  .map-space .level-mark { color:#e2a484; }
+  .on-space { border-color:#2a241a; }
+}

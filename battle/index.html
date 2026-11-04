@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>华夏大乱斗</title>
+  <link rel="stylesheet" href="/shared/theme.css">
+  <link rel="stylesheet" href="/shared/game.css">
+  <link rel="stylesheet" href="/battle/battle.css">
+</head>
+<body>
+  <script type="module" src="/shared/game-runtime.js"></script>
+  <main class="game game-history">
+    <header class="game-header">
+      <h1>华夏大乱斗</h1>
+      <a class="back" href="/history/">← 返回历史</a>
+    </header>
+
+    <!-- 大厅：创建/加入房间 -->
+    <section id="screen-lobby" class="bt-screen">
+      <div class="bt-intro">
+        <p>穿越随机朝代，双人轮流选将组建<b>最强朝廷</b>，十个职位逐一对决！</p>
+        <p>创建房间邀请好友，或输入房间号加入对局。</p>
+      </div>
+      <div class="bt-lobby">
+        <div class="bt-lobby-panel">
+          <h3>创建房间</h3>
+          <label>你的昵称 <input id="create-name" type="text" maxlength="8" placeholder="玩家一"></label>
+          <label>房间密码 <input id="create-pass" type="text" maxlength="12" placeholder="设一个密码"></label>
+          <button id="btn-create" class="reset-btn">创建房间</button>
+        </div>
+        <div class="bt-lobby-divider">或</div>
+        <div class="bt-lobby-panel">
+          <h3>加入房间</h3>
+          <label>你的昵称 <input id="join-name" type="text" maxlength="8" placeholder="玩家二"></label>
+          <label>房间号 <input id="join-code" type="text" maxlength="4" placeholder="4位房间号"></label>
+          <label>房间密码 <input id="join-pass" type="text" maxlength="12" placeholder="输入密码"></label>
+          <button id="btn-join" class="reset-btn">加入房间</button>
+        </div>
+      </div>
+      <div id="lobby-error" class="bt-error hidden"></div>
+    </section>
+
+    <!-- 等待对手 -->
+    <section id="screen-waiting" class="bt-screen hidden">
+      <div class="bt-waiting">
+        <div class="bt-room-code">房间号：<b id="room-code-display"></b></div>
+        <p class="bt-waiting-text">等待对手加入…</p>
+        <p class="bt-waiting-hint">将房间号和密码发给好友</p>
+        <div class="bt-spinner"></div>
+      </div>
+    </section>
+
+    <!-- 选将界面 -->
+    <section id="screen-draft" class="bt-screen hidden">
+      <div class="bt-dynasty" id="dynasty-banner"></div>
+      <div class="bt-draft-info">
+        <span id="draft-turn"></span>
+        <span id="draft-pos"></span>
+      </div>
+      <div class="bt-lineups">
+        <div class="bt-lineup" id="lineup-a"><h3 id="lineup-a-name">玩家一</h3><ul id="slots-a"></ul></div>
+        <div class="bt-lineup" id="lineup-b"><h3 id="lineup-b-name">玩家二</h3><ul id="slots-b"></ul></div>
+      </div>
+      <div class="bt-pool" id="hero-pool"></div>
+    </section>
+
+    <!-- 对决界面 -->
+    <section id="screen-battle" class="bt-screen hidden">
+      <div class="bt-dynasty" id="dynasty-banner2"></div>
+      <h2 class="bt-battle-title">⚔️ 十局对决</h2>
+      <div id="battle-results" class="bt-results"></div>
+      <div id="battle-summary" class="bt-summary"></div>
+      <div id="ai-analysis" class="bt-analysis hidden">
+        <h3 class="bt-analysis-title">📜 AI 战报</h3>
+        <div id="ai-text" class="bt-analysis-text"></div>
+      </div>
+      <button id="btn-restart" class="reset-btn">返回大厅</button>
+    </section>
+  </main>
+
+  <script type="module" src="/battle/battle.js"></script>
+</body>
+</html>

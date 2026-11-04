@@ -1,0 +1,40 @@
+.weiqi-body { grid-template-columns: 1fr 240px; }
+
+#board {
+  width: min(94vw, 540px);
+  height: min(94vw, 540px);
+  background: var(--wood-light);
+  border: 1px solid var(--wood-dark);
+  border-radius: 6px;
+  box-shadow: var(--shadow);
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  max-width: 100%;
+}
+
+.size-row, .ctrl-row { display: flex; gap: 8px; }
+
+.size-btn, .ctrl-btn {
+  flex: 1; padding: 10px 12px; border: 1px solid var(--border, #ccc);
+  background: var(--surface); border-radius: 6px; cursor: pointer; font-size: 14px;
+  min-height: 44px;
+  transition: background 0.2s;
+}
+.size-btn:active { background: var(--bg); }
+.size-btn.active { background: var(--ink, #222); color: #fff; border-color: var(--ink); }
+.ctrl-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.about { font-size: 12px; color: var(--muted); line-height: 1.6; }
+.about a { color: var(--muted); text-decoration: underline; }
+
+@media (max-width: 800px) {
+  .weiqi-body { grid-template-columns: 1fr; gap: 8px; }
+  #board { width: 100%; max-width: 100%; height: auto; aspect-ratio: 1 / 1; }
+  .controls { gap: 8px; }
+  .controls > .about { display: none; }
+  .size-btn, .ctrl-btn { padding: 11px 10px; font-size: 15px; min-height: 44px; }
+  .size-row { gap: 6px; }
+  .ctrl-row { gap: 6px; }
+  .status { font-size: 15px; padding: 8px; }
+}

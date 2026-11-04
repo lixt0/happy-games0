@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>登录 · 快乐小游戏</title>
+  <link rel="stylesheet" href="/shared/theme.css">
+  <style>
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+    .auth-wrap {
+      width: 100%;
+      max-width: 410px;
+      animation: slideUp 0.4s ease-out;
+    }
+    .auth-card {
+      position: relative;
+      overflow: hidden;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 34px 32px 28px;
+    }
+    .auth-card::before {
+      content: '';
+      position: absolute;
+      inset: 0 0 auto;
+      height: 4px;
+      background: var(--accent-teal);
+    }
+    .auth-title {
+      text-align: center;
+      margin: 0 0 8px;
+      font-size: 34px;
+      color: var(--ink);
+    }
+    .auth-subtitle {
+      text-align: center;
+      margin: 0 0 28px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .tabs {
+      display: flex;
+      gap: 4px;
+      background: var(--surface-muted);
+      border-radius: var(--radius);
+      padding: 4px;
+      margin-bottom: 22px;
+    }
+    .tab {
+      flex: 1;
+      padding: 10px;
+      text-align: center;
+      border: none;
+      background: transparent;
+      border-radius: 6px;
+      font-family: var(--font-title);
+      font-size: 18px;
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .tab.active {
+      background: var(--accent-teal);
+      color: white;
+      box-shadow: 0 2px 6px rgba(39, 117, 111, 0.22);
+    }
+    .form { display: none; animation: fadeIn 0.25s ease-out; }
+    .form.active { display: block; }
+    .field { margin-bottom: 18px; }
+    .field label {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .field input {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 15px;
+      font-family: var(--font-body);
+      color: var(--ink);
+      background: var(--surface-muted);
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .field input:focus {
+      outline: none;
+      border-color: var(--accent-teal);
+      box-shadow: 0 0 0 3px rgba(39, 117, 111, 0.12);
+    }
+    .btn {
+      width: 100%;
+      padding: 13px;
+      border: none;
+      border-radius: 6px;
+      background: var(--accent-teal);
+      color: white;
+      font-family: var(--font-title);
+      font-size: 19px;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+      margin-top: 6px;
+    }
+    .btn:hover { background: #1f625d; }
+    .btn:active { transform: scale(0.98); }
+    .btn:disabled { background: var(--muted); cursor: not-allowed; }
+    @media (prefers-color-scheme: dark) {
+      .tab.active, .btn { background: #2f7d76; }
+      .btn:hover { background: #28706a; }
+    }
+    .msg {
+      min-height: 20px;
+      margin-top: 14px;
+      text-align: center;
+      font-size: 13px;
+      color: var(--danger);
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .msg.show { opacity: 1; }
+    .msg.ok { color: var(--success); }
+    .back-home {
+      display: block;
+      text-align: center;
+      margin-top: 20px;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 13px;
+      transition: color 0.2s;
+    }
+    .back-home:hover { color: var(--ink); }
+
+    @media (max-width: 480px) {
+      body { align-items: flex-start; padding: 24px 12px; }
+      .auth-card { padding: 28px 20px 22px; }
+      .auth-title { font-size: 30px; }
+      .field input, .btn { min-height: 46px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="auth-wrap">
+    <div class="auth-card">
+      <h1 class="auth-title">快乐小游戏</h1>
+      <p class="auth-subtitle">登录后尽情玩耍</p>
+      <div class="tabs">
+        <button type="button" class="tab active" data-tab="login">登 录</button>
+        <button type="button" class="tab" data-tab="register">注 册</button>
+      </div>
+
+      <form id="login-form" class="form active" autocomplete="on">
+        <div class="field">
+          <label for="login-user">用户名</label>
+          <input type="text" id="login-user" name="username" required maxlength="20" autocomplete="username">
+        </div>
+        <div class="field">
+          <label for="login-pass">密码</label>
+          <input type="password" id="login-pass" name="password" required minlength="6" autocomplete="current-password">
+        </div>
+        <button type="submit" class="btn">登 录</button>
+        <p class="msg" id="login-msg"></p>
+      </form>
+
+      <form id="register-form" class="form" autocomplete="on">
+        <div class="field">
+          <label for="reg-user">用户名</label>
+          <input type="text" id="reg-user" name="username" required minlength="3" maxlength="20" autocomplete="username">
+        </div>
+        <div class="field">
+          <label for="reg-pass">密码</label>
+          <input type="password" id="reg-pass" name="password" required minlength="6" autocomplete="new-password">
+        </div>
+        <div class="field">
+          <label for="reg-pass2">确认密码</label>
+          <input type="password" id="reg-pass2" name="password2" required minlength="6" autocomplete="new-password">
+        </div>
+        <button type="submit" class="btn">注 册</button>
+        <p class="msg" id="reg-msg"></p>
+      </form>
+    </div>
+    <a href="/" class="back-home">← 返回首页</a>
+  </div>
+
+  <script type="module">
+    const SESSION_KEY = 'hg_session';
+
+    function setMsg(el, text, ok = false) {
+      el.textContent = text;
+      el.classList.toggle('ok', ok);
+      el.classList.add('show');
+    }
+
+    // 已登录则直接回首页（cookie 由服务端设置，页面侧仅做跳转）
+    try {
+      const res = await fetch('/api/me');
+      if (res.ok) {
+        const data = await res.json();
+        if (data.username) location.replace('/');
+      }
+    } catch {}
+
+    const tabs = document.querySelectorAll('.tab');
+    const forms = document.querySelectorAll('.form');
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const target = tab.dataset.tab;
+        tabs.forEach(t => t.classList.toggle('active', t === tab));
+        forms.forEach(f => f.classList.toggle('active', f.id === `${target}-form`));
+        document.querySelectorAll('.msg').forEach(m => m.classList.remove('show'));
+      });
+    });
+
+    const loginForm = document.getElementById('login-form');
+    const loginMsg = document.getElementById('login-msg');
+    loginForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const username = document.getElementById('login-user').value.trim();
+      const password = document.getElementById('login-pass').value;
+      try {
+        const res = await fetch('/api/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, password }),
+        });
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok) { setMsg(loginMsg, data.error || '登录失败'); return; }
+        setMsg(loginMsg, '登录成功，即将跳转…', true);
+        setTimeout(redirectAfterAuth, 400);
+      } catch { setMsg(loginMsg, '网络错误'); }
+    });
+
+    const regForm = document.getElementById('register-form');
+    const regMsg = document.getElementById('reg-msg');
+    regForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const username = document.getElementById('reg-user').value.trim();
+      const password = document.getElementById('reg-pass').value;
+      const password2 = document.getElementById('reg-pass2').value;
+      if (password !== password2) { setMsg(regMsg, '两次输入的密码不一致'); return; }
+      try {
+        const res = await fetch('/api/register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, password }),
+        });
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok) { setMsg(regMsg, data.error || '注册失败'); return; }
+        setMsg(regMsg, '注册成功，即将跳转…', true);
+        setTimeout(redirectAfterAuth, 400);
+      } catch { setMsg(regMsg, '网络错误'); }
+    });
+
+    function redirectAfterAuth() {
+      const params = new URLSearchParams(location.search);
+      const from = params.get('from');
+      window.location.href = from ? decodeURIComponent(from) : '/';
+    }
+  </script>
+</body>
+</html>

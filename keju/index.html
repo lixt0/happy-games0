@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>科举闯关</title>
+  <link rel="stylesheet" href="/shared/theme.css">
+  <link rel="stylesheet" href="/shared/game.css">
+  <link rel="stylesheet" href="/keju/keju.css">
+</head>
+<body>
+  <script type="module" src="/shared/game-runtime.js"></script>
+  <main class="game game-history">
+    <header class="game-header">
+      <h1>科举闯关</h1>
+      <a class="back" href="/history/">← 返回历史</a>
+    </header>
+
+    <section class="keju-intro">
+      <p>童生起步，自<b>县试、府试、院试、乡试、会试、殿试</b>逐级闯关，直至摘得 <b>状元</b> 功名。</p>
+      <p>每关 <b>3 题</b>四选一，每题倒计时；答错或<b>超时即止</b>，按已过关数授予功名。</p>
+      <p>途中两项道具各 <b>1 次</b>：<b>去二错项</b> 与 <b>加时 10 秒</b>。</p>
+    </section>
+
+    <div class="keju-board">
+      <div id="progress" class="keju-progress"></div>
+
+      <div id="quiz" class="hidden">
+        <div class="keju-question">
+          <div class="keju-qmeta">
+            <span class="keju-stage-label" id="stage-label"></span>
+            <span>第 <b id="q-no">1</b>/<span id="q-total">3</span> 题 · 已答对 <b id="q-ok">0</b></span>
+            <span class="keju-timer" id="timer">30</span>
+          </div>
+          <div class="keju-qtext" id="qtext"></div>
+        </div>
+        <div class="keju-options" id="options"></div>
+        <div class="keju-explain" id="explain"></div>
+        <div class="keju-tools" id="tools"></div>
+        <button type="button" id="next" class="reset-btn hidden">下一题 →</button>
+      </div>
+
+      <div id="feedback" class="keju-feedback"></div>
+
+      <div id="result" class="keju-result hidden"></div>
+
+      <div class="keju-legend">
+        <div><b>功名表</b>：童生 → 秀才 → 举人 → 贡士 → 进士 → 探花 → 榜眼 → 状元。</div>
+        <div>每关 3 题全对方可晋级；计时随难度递减（30→18 秒）。</div>
+      </div>
+    </div>
+  </main>
+
+  <script type="module" src="/keju/keju.js"></script>
+</body>
+</html>

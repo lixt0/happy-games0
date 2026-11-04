@@ -1,0 +1,24 @@
+#board {
+  width: min(90vw, 600px);
+  height: min(90vw, 600px);
+  background: var(--wood-light);
+  border: 1px solid color-mix(in srgb, var(--wood-dark) 70%, var(--ink));
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  touch-action: none;
+}
+
+#board:focus-visible {
+  outline: 3px solid var(--accent-teal);
+  outline-offset: 4px;
+}
+
+.status { font-size: 20px; }
+.status.win { color: var(--accent-red); }
+
+.reset-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}

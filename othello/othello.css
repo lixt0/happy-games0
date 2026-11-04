@@ -1,0 +1,37 @@
+.othello-game { --game-accent: #28755a; --game-accent-soft: rgba(40, 117, 90, .12); }
+.ot-header-actions { display: flex; align-items: center; gap: 12px; }
+.ot-rules-button, .ot-close { border: 1px solid var(--border); background: var(--surface); color: var(--ink); cursor: pointer; }
+.ot-rules-button { min-height: 40px; padding: 8px 13px; border-radius: 6px; font-size: 14px; }
+.ot-rules-button:hover, .ot-close:hover { border-color: var(--game-accent); color: var(--game-accent); }
+.ot-layout { display: grid; grid-template-columns: minmax(0, 600px) 230px; justify-content: center; gap: 26px; align-items: start; }
+.ot-board-wrap { display: flex; justify-content: center; }
+.ot-board { display: grid; grid-template-columns: repeat(8, 1fr); width: min(90vw, 600px); aspect-ratio: 1; overflow: hidden; border: 7px solid #164a39; border-radius: 6px; background: #28755a; box-shadow: 0 12px 26px rgba(17, 49, 37, .22); }
+.ot-cell { position: relative; min-width: 0; min-height: 0; padding: 0; border: 0; border-right: 1px solid rgba(229, 248, 237, .32); border-bottom: 1px solid rgba(229, 248, 237, .32); background: transparent; cursor: default; }
+.ot-cell:disabled { opacity: 1; }
+.ot-cell.legal { cursor: pointer; }
+.ot-cell.legal:hover { background: rgba(255, 255, 255, .10); }
+.ot-disc { position: absolute; inset: 13%; border-radius: 50%; box-shadow: inset 0 2px 2px rgba(255,255,255,.22), inset 0 -3px 4px rgba(0,0,0,.26), 0 2px 3px rgba(0,0,0,.28); }
+.ot-disc.black { background: #182522; border: 1px solid #0b1110; }
+.ot-disc.white { background: #f2f5ed; border: 1px solid #b7c0b4; }
+.ot-move-dot { display: none; position: absolute; inset: 43%; border-radius: 50%; background: rgba(240, 255, 245, .8); }
+.ot-cell.legal .ot-move-dot { display: block; }
+.ot-side { display: flex; flex-direction: column; gap: 16px; }
+.ot-score { display: grid; grid-template-columns: 1fr 1fr; border-top: 3px solid var(--game-accent); background: var(--surface); box-shadow: var(--shadow-soft); }
+.ot-score-item { display: grid; grid-template-columns: 24px 1fr; align-items: center; gap: 4px 8px; padding: 14px 12px; }
+.ot-score-item + .ot-score-item { border-left: 1px solid var(--border); }
+.ot-score .ot-disc { position: static; display: block; width: 22px; height: 22px; grid-row: span 2; }
+.ot-score strong { font-size: 24px; line-height: 1; }
+.ot-score small { color: var(--muted); font-size: 12px; }
+.ot-control-group { padding-top: 2px; }
+.ot-label { display: block; margin-bottom: 7px; color: var(--muted); font-size: 12px; font-weight: 600; }
+.button-row > * { flex: 1; }
+.ot-tip { padding-left: 12px; border-left: 2px solid var(--border); color: var(--muted); font-size: 13px; line-height: 1.55; }
+.ot-rules-modal { width: min(470px, 100%); text-align: left; }
+.ot-rules-heading { display: flex; justify-content: space-between; align-items: start; gap: 16px; }
+.ot-rules-heading .modal-title { font-size: 25px; }
+.ot-rules-modal ol { margin: 8px 0 0; padding-left: 22px; color: var(--ink); }
+.ot-rules-modal li { margin: 10px 0; line-height: 1.55; }
+.ot-close { width: 40px; height: 40px; flex: 0 0 40px; border-radius: 6px; font-size: 24px; line-height: 1; }
+/* 布局总宽 600+230+26=856px,断点必须高于此值,否则平板竖屏区间水平溢出 */
+@media (max-width: 905px) { .ot-layout { grid-template-columns: 1fr; gap: 14px; } .ot-side { width: min(100%, 600px); margin: 0 auto; gap: 12px; } .ot-tip { display: none; } }
+@media (prefers-color-scheme: dark) { .ot-board { border-color: #163f32; box-shadow: 0 12px 26px rgba(0,0,0,.38); } .ot-cell { border-color: rgba(227, 248, 234, .2); } .ot-score { background: var(--surface); } }

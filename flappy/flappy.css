@@ -1,0 +1,20 @@
+#canvas {
+  width: min(90vw, 400px);
+  height: min(135vw, 600px);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  touch-action: none;
+  background: #70c5ce;
+  user-select: none;
+  -webkit-user-select: none;
+  cursor: pointer;
+}
+
+.hint {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+.hint b { color: var(--ink); }
+

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>数独</title>
+  <link rel="stylesheet" href="/shared/theme.css">
+  <link rel="stylesheet" href="/shared/game.css">
+  <link rel="stylesheet" href="/sudoku/sudoku.css">
+</head>
+<body>
+  <script type="module" src="/shared/game-runtime.js"></script>
+  <main class="game game-puzzle">
+    <header class="game-header">
+      <h1>数独</h1>
+      <a class="back" href="/puzzle/">← 返回益智</a>
+    </header>
+
+    <section class="game-body">
+      <div class="board-wrap">
+        <div id="board" class="sudoku-board" role="grid" aria-label="数独棋盘"></div>
+        <div class="timer" id="timer">00:00</div>
+      </div>
+
+      <aside class="controls">
+        <div class="difficulty">
+          <div class="label">难度</div>
+          <div class="difficulty-buttons" role="radiogroup" aria-label="难度选择">
+            <button type="button" role="radio" data-difficulty="easy" class="diff-btn" aria-checked="false">简单</button>
+            <button type="button" role="radio" data-difficulty="medium" class="diff-btn active" aria-checked="true">中等</button>
+            <button type="button" role="radio" data-difficulty="hard" class="diff-btn" aria-checked="false">困难</button>
+          </div>
+        </div>
+
+        <div class="status" id="status" aria-live="polite">点格子填数字</div>
+
+        <div class="number-pad" role="group" aria-label="数字键盘">
+          <button type="button" class="num-btn" data-num="1">1</button>
+          <button type="button" class="num-btn" data-num="2">2</button>
+          <button type="button" class="num-btn" data-num="3">3</button>
+          <button type="button" class="num-btn" data-num="4">4</button>
+          <button type="button" class="num-btn" data-num="5">5</button>
+          <button type="button" class="num-btn" data-num="6">6</button>
+          <button type="button" class="num-btn" data-num="7">7</button>
+          <button type="button" class="num-btn" data-num="8">8</button>
+          <button type="button" class="num-btn" data-num="9">9</button>
+          <button type="button" class="num-btn erase" data-num="0">清除</button>
+        </div>
+
+        <button type="button" id="new-game" class="reset-btn">新游戏</button>
+      </aside>
+    </section>
+  </main>
+
+  <div class="modal hidden" id="win-modal" role="dialog" aria-modal="true" aria-labelledby="win-title">
+    <div class="modal-backdrop"></div>
+    <div class="modal-card">
+      <h2 id="win-title" class="modal-title">完成！</h2>
+      <p class="modal-text">用时 <span id="win-time">00:00</span></p>
+      <div class="modal-actions">
+        <button type="button" id="win-new" class="reset-btn">再来一局</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="/shared/a11y.js"></script>
+  <script type="module" src="/sudoku/sudoku.js"></script>
+</body>
+</html>

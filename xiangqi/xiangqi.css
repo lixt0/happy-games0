@@ -1,0 +1,55 @@
+.xiangqi-body { grid-template-columns: 1fr 260px; }
+
+#board {
+  width: min(94vw, 528px);
+  height: auto;
+  aspect-ratio: 528 / 584;
+  background: var(--wood-light);
+  border: 1px solid var(--wood-dark);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  cursor: pointer;
+  max-width: 100%;
+}
+
+.status { font-size: 18px; margin: 0; }
+.status.check { color: var(--accent-red); }
+.status.win { color: var(--success); }
+.status.thinking { color: var(--muted); }
+
+.ai-note {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.5;
+  background: var(--surface-muted);
+  border-radius: 4px;
+  padding: 8px 10px;
+  min-height: 20px;
+}
+.ai-note.fallback { color: var(--accent-red); }
+
+.reset-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+.reset-btn { flex: 1; min-height: 44px; }
+#undo {
+  border-color: var(--border);
+  background: var(--surface);
+  color: var(--ink);
+}
+#undo:hover:not(:disabled) {
+  border-color: var(--game-accent);
+  color: var(--game-accent);
+  box-shadow: none;
+}
+
+@media (max-width: 800px) {
+  .xiangqi-body { grid-template-columns: 1fr; gap: 8px; }
+  #board { width: 100%; max-width: 100%; height: auto; aspect-ratio: 528 / 584; }
+  .controls { gap: 8px; }
+  .hint { display: none; }
+  .stats { padding: 6px 8px; }
+  .stat-value { font-size: 20px; }
+  .reset-btn { padding: 11px 12px; font-size: 15px; min-height: 44px; }
+}

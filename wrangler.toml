@@ -1,0 +1,8 @@
+name = "happy-games0"
+compatibility_date = "2025-01-01"
+pages_build_output_dir = "."
+
+[[d1_databases]]
+binding = "DB"
+database_name = "happy-games-db"
+database_id = "20520c4d-307c-4913-b1f5-614aa09d1a2a"

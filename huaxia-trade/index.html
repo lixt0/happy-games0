@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="华夏商旅：沿古代商路经营城市、升级商号，与 AI 争夺天下财富。">
+  <title>华夏商旅 · 快乐小游戏</title>
+  <link rel="stylesheet" href="/shared/theme.css">
+  <link rel="stylesheet" href="/shared/game.css">
+  <link rel="stylesheet" href="/huaxia-trade/huaxia-trade.css">
+</head>
+<body>
+  <script type="module" src="/shared/game-runtime.js"></script>
+  <main class="game game-history trade-game">
+    <header class="game-header">
+      <div><h1>华夏商旅</h1><p class="subtitle">走遍古今名城，经营你的天下商号</p></div>
+      <div class="trade-header-actions"><button id="rules-btn" class="rules-btn" type="button">游戏规则</button><a class="back" href="/history/">返回历史</a></div>
+    </header>
+    <section class="trade-layout">
+      <div class="map-frame">
+        <div class="map-title"><span>华夏商路图</span><small id="round-label">第 1 轮</small></div>
+        <div id="map" class="trade-map" aria-label="华夏商路地图"></div>
+        <div class="map-legend"><span><i class="legend-dot city-dot"></i>可经营城市</span><span><i class="legend-dot event-dot"></i>历史事件</span><span><i class="legend-dot port-dot"></i>商路/关隘</span></div>
+      </div>
+      <aside class="trade-side">
+        <div id="turn-card" class="turn-card"></div>
+        <div id="players" class="player-list"></div>
+        <div id="space-info" class="space-info"></div>
+        <div class="action-area"><button id="roll-btn" class="roll-btn" type="button">掷骰子</button><div id="action-buttons" class="action-buttons"></div></div>
+        <div class="trade-log" id="trade-log"></div>
+      </aside>
+    </section>
+    <div id="rules-modal" class="trade-modal hidden" role="dialog" aria-modal="true" aria-labelledby="rules-title">
+      <div class="modal-backdrop" data-close-rules></div>
+      <div class="modal-card rules-card">
+        <div class="modal-heading"><h2 id="rules-title">华夏商旅规则</h2><button id="close-rules" class="close-btn" type="button" aria-label="关闭规则">×</button></div>
+        <div class="rules-columns">
+          <div><h3>胜利目标</h3><p>沿古代商路移动，买下名城的商号并不断升级。其他商旅破产后，资产最高的玩家成为天下首富。</p><h3>回合流程</h3><ol><li>轮到你时点击“掷骰子”，棋子沿商路前进。</li><li>未拥有的城市可以购买；自己的城市可以升级。</li><li>落在他人城市要缴纳商税，落在事件、港口或关隘会触发对应效果。</li><li>操作结束后轮到下一位，AI 会自动完成自己的回合。</li></ol></div>
+          <div><h3>经营规则</h3><ul><li>每圈经过长安一次，获得 200 两商旅红利。</li><li>商号最多升级三次：商铺、商行、总号，等级越高商税越高。</li><li>各地物价开局随机，此后每轮随行就市，时涨时落，择低买入更划算。</li><li>现金低于 0 两会破产，名下商号回到无人经营状态。</li><li>最后留下的商旅获胜；若游戏持续到后期，则比较现金与商号总值。</li></ul><h3>地图提示</h3><p>长安、洛阳、汴京、金陵、成都、广州、大都等城市跨越不同朝代同图出现，代表一条架空的华夏历代商路。</p></div>
+        </div>
+      </div>
+    </div>
+    <div id="finish-modal" class="trade-modal hidden" role="dialog" aria-modal="true"><div class="modal-backdrop"></div><div class="modal-card result-card"><p>商路结算</p><h2 id="finish-title"></h2><div id="finish-ranking"></div><button id="restart-btn" class="reset-btn" type="button">再走一局</button></div></div>
+  </main>
+  <script type="module" src="/shared/a11y.js"></script>
+  <script type="module" src="/huaxia-trade/huaxia-trade.js"></script>
+</body>
+</html>

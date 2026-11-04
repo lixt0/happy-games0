@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>迷宫逃脱</title>
+  <link rel="stylesheet" href="/shared/theme.css">
+  <link rel="stylesheet" href="/shared/game.css">
+  <link rel="stylesheet" href="/maze/maze.css">
+</head>
+<body>
+  <script type="module" src="/shared/game-runtime.js"></script>
+  <main class="game game-puzzle">
+    <header class="game-header">
+      <h1>迷宫逃脱</h1>
+      <a class="back" href="/puzzle/">← 返回益智</a>
+    </header>
+
+    <section class="game-body">
+      <div class="board-wrap">
+        <canvas id="canvas" aria-label="迷宫"></canvas>
+      </div>
+
+      <aside class="controls">
+        <div class="stats">
+          <div class="stat-item">
+            <div class="stat-value" id="level">1</div>
+            <div class="stat-label">关卡</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value" id="time">30</div>
+            <div class="stat-label">时间</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value" id="moves">0</div>
+            <div class="stat-label">步数</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value" id="best">0</div>
+            <div class="stat-label">最高</div>
+          </div>
+        </div>
+
+        <div class="hint">
+          <div class="label">玩法</div>
+          <p>用 <b>方向键</b> 或 <b>WASD</b> 移动红球，在限时内到达绿色方块。迷宫越来越大，时间越来越紧！</p>
+        </div>
+
+        <div class="button-row">
+          <button type="button" id="restart" class="reset-btn">重玩</button>
+          <button type="button" id="next" class="reset-btn">下一关</button>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <script type="module" src="/maze/maze.js"></script>
+</body>
+</html>

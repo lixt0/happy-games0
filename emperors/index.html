@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>华夏帝王</title>
+  <link rel="stylesheet" href="/shared/theme.css">
+  <link rel="stylesheet" href="/shared/game.css">
+  <link rel="stylesheet" href="/emperors/emperors.css">
+</head>
+<body>
+  <script type="module" src="/shared/game-runtime.js"></script>
+  <main class="game game-history">
+    <header class="game-header">
+      <h1>华夏帝王</h1>
+      <a class="back" href="/history/">← 返回历史</a>
+    </header>
+
+    <section class="emp-intro">
+      <p>系统已随机选定一位中国古代帝王（商至清，200 余位）。<b>不限次数</b>，猜中为止。</p>
+      <p>支持别名输入：<b>李世民 = 唐太宗</b>、<b>刘彻 = 汉武帝</b>、<b>康熙帝 = 清圣祖</b> 等。</p>
+      <p>每次猜测都会给出与答案的 <b>相似度</b>；<b>第 5 次起，每次有 50% 概率</b>额外揭示朝代、身份与六维能力（政治/军事/谋略/外交/文学/魅力）的对比。</p>
+    </section>
+
+    <div class="emp-board">
+      <div class="emp-input">
+        <input id="guess-input" type="text" list="emperor-list" placeholder="输入帝王名（如 秦始皇）" autocomplete="off" />
+        <datalist id="emperor-list"></datalist>
+        <button type="button" id="guess-btn" class="reset-btn">猜测</button>
+        <button type="button" id="giveup" class="giveup-btn">放弃，看答案</button>
+      </div>
+
+      <div class="emp-remaining">
+        已猜：<b id="count">0</b> 次
+      </div>
+
+      <div id="history" class="emp-history"></div>
+
+      <div id="result" class="emp-result hidden"></div>
+
+      <div class="emp-legend">
+        <div class="legend-title">提示说明</div>
+        <div class="legend-row">
+          <span class="clue clue-correct">绿</span> 完全一致
+          <span class="clue clue-near">黄</span> 接近（同时代 / 能力差 ≤ 8）
+          <span class="clue clue-far">灰</span> 相差较远
+        </div>
+        <div class="legend-row small">能力值若答案<b>更高/更低</b>会显式标出点数差距；朝代会说明你猜的时代更早/更晚。</div>
+      </div>
+    </div>
+  </main>
+
+  <script type="module" src="/emperors/emperors.js"></script>
+</body>
+</html>

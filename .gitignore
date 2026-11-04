@@ -1,0 +1,9 @@
+node_modules/
+.wrangler/
+.superpowers/
+.deploy-*/
+.dev.vars
+.claude/
+dist/
+*.log
+.DS_Store

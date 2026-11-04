@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="回声行者：在七乘七棋盘上收集印章，每六步留下一个沿旧路巡游的回声。">
+  <title>回声行者</title>
+  <link rel="stylesheet" href="/shared/theme.css">
+  <link rel="stylesheet" href="/shared/game.css">
+  <link rel="stylesheet" href="/echo/echo.css">
+</head>
+<body>
+  <script type="module" src="/shared/game-runtime.js"></script>
+  <main class="game game-puzzle echo-game">
+    <header class="game-header">
+      <div class="title-lockup">
+        <span class="title-seal" aria-hidden="true">回</span>
+        <div class="title-copy">
+          <h1>回声行者</h1>
+          <span>莫让过去追上你</span>
+        </div>
+      </div>
+      <a class="back" href="/puzzle/">← 返回益智</a>
+    </header>
+
+    <section class="echo-layout">
+      <div class="play-area">
+        <div class="board-frame">
+          <canvas id="canvas" width="560" height="560" tabindex="0" aria-label="回声行者棋盘" aria-describedby="game-instructions"></canvas>
+          <span id="game-instructions" class="sr-only">使用方向键、WASD、方向按钮或在棋盘上滑动。收集所有印章，避开沿旧路巡游的回声。</span>
+        </div>
+
+        <div class="turn-status" aria-live="polite">
+          <span class="status-mark" aria-hidden="true"></span>
+          <span id="status-text">寻找四方印</span>
+        </div>
+
+      </div>
+
+      <aside class="controls echo-panel">
+        <div class="stats echo-stats">
+          <div class="stat-item">
+            <div class="stat-value" id="level">1</div>
+            <div class="stat-label">关卡</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value" id="seals">0/4</div>
+            <div class="stat-label">印章</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value" id="echoes">0</div>
+            <div class="stat-label">回声</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value" id="best">1</div>
+            <div class="stat-label">最高</div>
+          </div>
+        </div>
+
+        <div class="echo-clock">
+          <div class="clock-head">
+            <span>下个回声</span>
+            <strong id="echo-countdown">6 步</strong>
+          </div>
+          <div class="clock-track" id="echo-track" aria-hidden="true"></div>
+        </div>
+
+        <div class="move-block">
+          <div class="direction-pad" aria-label="移动方向">
+            <button type="button" class="move-btn move-up" data-direction="up" aria-label="向上" title="向上">↑</button>
+            <button type="button" class="move-btn move-left" data-direction="left" aria-label="向左" title="向左">←</button>
+            <button type="button" class="move-btn move-down" data-direction="down" aria-label="向下" title="向下">↓</button>
+            <button type="button" class="move-btn move-right" data-direction="right" aria-label="向右" title="向右">→</button>
+          </div>
+        </div>
+
+        <div class="legend" aria-label="棋盘图例">
+          <div><span class="legend-piece legend-player"></span><span>行者</span></div>
+          <div><span class="legend-piece legend-seal">印</span><span>印章</span></div>
+          <div><span class="legend-piece legend-echo"></span><span>回声</span></div>
+          <div><span class="legend-piece legend-wall"></span><span>石柱</span></div>
+        </div>
+
+        <button type="button" id="restart" class="icon-command" aria-label="重新开始本关" title="重新开始本关">
+          <span aria-hidden="true">↻</span>
+          <span>重开本关</span>
+        </button>
+      </aside>
+    </section>
+  </main>
+
+  <div class="modal hidden" id="result-modal" role="dialog" aria-modal="true" aria-labelledby="result-title">
+    <div class="modal-backdrop"></div>
+    <div class="modal-card result-card">
+      <div class="result-emblem" id="result-emblem" aria-hidden="true"></div>
+      <h2 class="modal-title" id="result-title"></h2>
+      <p class="modal-text" id="result-text"></p>
+      <div class="modal-actions">
+        <button type="button" id="result-action" class="reset-btn"></button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="/shared/a11y.js"></script>
+  <script type="module" src="/echo/echo.js"></script>
+</body>
+</html>

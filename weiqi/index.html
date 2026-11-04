@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>围棋 · 快乐小游戏</title>
+  <link rel="stylesheet" href="/shared/theme.css">
+  <link rel="stylesheet" href="/shared/game.css">
+  <link rel="stylesheet" href="/weiqi/weiqi.css">
+</head>
+<body>
+  <script type="module" src="/shared/game-runtime.js"></script>
+  <main class="game game-board">
+    <header class="game-header">
+      <h1>围棋</h1>
+      <a class="back" href="/board/">← 返回棋类</a>
+    </header>
+    <section class="game-body weiqi-body">
+      <div class="board-wrap">
+        <canvas id="board" width="540" height="540" aria-label="围棋棋盘"></canvas>
+      </div>
+      <aside class="controls">
+        <div class="difficulty">
+          <div class="label">棋盘</div>
+          <div class="size-row" role="radiogroup" aria-label="棋盘尺寸">
+            <button type="button" role="radio" data-size="9" class="size-btn active" aria-checked="true">9 路</button>
+            <button type="button" role="radio" data-size="13" class="size-btn" aria-checked="false">13 路</button>
+          </div>
+        </div>
+        <div class="status" id="status" aria-live="polite">点击「开始对弈」加载引擎</div>
+        <div class="ctrl-row">
+          <button type="button" id="start" class="ctrl-btn">开始对弈</button>
+          <button type="button" id="reset" class="ctrl-btn" disabled>重开</button>
+        </div>
+        <div class="ctrl-row">
+          <button type="button" id="resign" class="ctrl-btn" disabled>认输</button>
+        </div>
+        <div class="about" id="about">
+          引擎：GNU Go（经 emscripten）。<a href="https://www.gnu.org/software/gnugo/" target="_blank" rel="noopener">GNU Go</a> ·
+          <a href="https://github.com/dna2ai/gnugo.js" target="_blank" rel="noopener">gnugo.js</a><br>
+          你执黑先走，贴目 7.5。规则与 AI 在浏览器本地计算。
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <div class="modal hidden" id="win-modal" role="dialog" aria-modal="true" aria-labelledby="win-title">
+    <div class="modal-backdrop"></div>
+    <div class="modal-card">
+      <h2 id="win-title" class="modal-title">对局结束</h2>
+      <p class="modal-text" id="win-text"></p>
+      <div class="modal-actions">
+        <button type="button" id="win-new" class="reset-btn">再来一局</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="/shared/a11y.js"></script>
+  <script type="module" src="/weiqi/weiqi.js"></script>
+</body>
+</html>

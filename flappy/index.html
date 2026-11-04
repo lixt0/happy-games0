@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>跳跳鸟</title>
+  <link rel="stylesheet" href="/shared/theme.css">
+  <link rel="stylesheet" href="/shared/game.css">
+  <link rel="stylesheet" href="/flappy/flappy.css">
+</head>
+<body>
+  <script type="module" src="/shared/game-runtime.js"></script>
+  <main class="game game-fun">
+    <header class="game-header">
+      <h1>跳跳鸟</h1>
+      <a class="back" href="/fun/">← 返回趣味</a>
+    </header>
+
+    <section class="game-body">
+      <div class="board-wrap">
+        <canvas id="canvas" aria-label="跳跳鸟游戏"></canvas>
+      </div>
+
+      <aside class="controls">
+        <div class="stats">
+          <div class="stat-item">
+            <div class="stat-value" id="score">0</div>
+            <div class="stat-label">得分</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value" id="best">0</div>
+            <div class="stat-label">最高</div>
+          </div>
+        </div>
+
+        <div class="hint">
+          <div class="label">玩法</div>
+          <p>点击屏幕或按 <b>空格键</b> 让小鸟向上飞，穿过管道得分。撞到管道或地面游戏结束！</p>
+        </div>
+
+        <button type="button" id="restart" class="reset-btn">重新开始</button>
+      </aside>
+    </section>
+  </main>
+
+  <script type="module" src="/flappy/flappy.js"></script>
+</body>
+</html>

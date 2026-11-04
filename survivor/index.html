@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>星火割草 - 快乐小游戏</title>
+  <link rel="stylesheet" href="/shared/theme.css">
+  <link rel="stylesheet" href="/shared/game.css">
+  <link rel="stylesheet" href="/survivor/survivor.css">
+</head>
+<body>
+  <script type="module" src="/shared/game-runtime.js"></script>
+  <main class="game game-fun survivor-game">
+    <header class="game-header"><h1>星火割草</h1><a class="back" href="/fun/">返回娱乐</a></header>
+    <section class="survivor-layout">
+      <div class="survivor-stage"><canvas id="arena" aria-label="星火割草游戏"></canvas><div id="start-screen" class="arena-cover"><h2>星火割草</h2><p>移动、自动射击、拾取能量，在怪潮中坚持。</p><button id="start" class="reset-btn" type="button">开始生存</button></div><div id="upgrade-screen" class="upgrade-screen hidden"><p>等级提升</p><h2>选择一项强化</h2><div id="upgrade-list" class="upgrade-list"></div></div></div>
+      <aside class="survivor-panel"><div class="survivor-stat"><span>存活时间</span><b id="time">00:00</b></div><div class="survivor-stat"><span>等级</span><b id="level">1</b></div><div class="survivor-stat"><span>击败</span><b id="kills">0</b></div><div class="meter"><span>生命</span><i><em id="hp-bar"></em></i></div><div class="meter"><span>能量</span><i><em id="xp-bar"></em></i></div><div class="survivor-hint"><b>操作</b><p>WASD 或方向键移动。星火会自动攻击最近的敌人，收集掉落能量即可升级。</p></div><button id="restart" class="reset-btn" type="button">重新开始</button></aside>
+    </section>
+  </main>
+  <script type="module" src="/survivor/survivor.js"></script>
+</body>
+</html>

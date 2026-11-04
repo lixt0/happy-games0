@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>快乐小游戏</title>
+    <link>https://happygames.pages.dev/</link>
+    <description>经典小游戏合集，闲暇时光的好伴侣</description>
+    <language>zh-CN</language>
+    <lastBuildDate>Tue, 28 Jul 2026 00:00:00 +0800</lastBuildDate>
+    <item>
+      <title>堆塔</title>
+      <link>https://happy-games.pages.dev/stack/</link>
+      <description>看准时机落下方块，精准对齐，挑战最高层数</description>
+      <guid>https://happy-games.pages.dev/stack/</guid>
+      <pubDate>Tue, 28 Jul 2026 00:00:00 +0800</pubDate>
+    </item>
+    <item>
+      <title>斗兽棋</title>
+      <link>https://happy-games.pages.dev/doushouqi/</link>
+      <description>经典河流与陷阱规则，三档人机对战</description>
+      <guid>https://happy-games.pages.dev/doushouqi/</guid>
+      <pubDate>Mon, 27 Jul 2026 00:00:00 +0800</pubDate>
+    </item>
+    <item>
+      <title>回声行者</title>
+      <link>https://happygames.pages.dev/echo/</link>
+      <description>每六步留下巡游旧路的回声，收集印章避开过去</description>
+      <guid>https://happygames.pages.dev/echo/</guid>
+      <pubDate>Mon, 27 Jul 2026 00:00:00 +0800</pubDate>
+    </item>
+    <item>
+      <title>五子棋</title>
+      <link>https://happygames.pages.dev/gomoku/</link>
+      <description>经典 15×15 人机对战，三档难度</description>
+      <guid>https://happygames.pages.dev/gomoku/</guid>
+      <pubDate>Thu, 24 Jul 2026 00:00:00 +0800</pubDate>
+    </item>
+    <item>
+      <title>跳跳鸟</title>
+      <link>https://happygames.pages.dev/flappy/</link>
+      <description>点击飞翔穿过管道，越飞越远</description>
+      <guid>https://happygames.pages.dev/flappy/</guid>
+      <pubDate>Thu, 24 Jul 2026 00:00:00 +0800</pubDate>
+    </item>
+    <item>
+      <title>数独</title>
+      <link>https://happygames.pages.dev/sudoku/</link>
+      <description>经典 9×9 数独，三档难度，限时挑战</description>
+      <guid>https://happygames.pages.dev/sudoku/</guid>
+      <pubDate>Thu, 24 Jul 2026 00:00:00 +0800</pubDate>
+    </item>
+    <item>
+      <title>推箱子</title>
+      <link>https://happygames.pages.dev/sokoban/</link>
+      <description>经典推箱子解谜，15 个关卡挑战</description>
+      <guid>https://happygames.pages.dev/sokoban/</guid>
+      <pubDate>Thu, 24 Jul 2026 00:00:00 +0800</pubDate>
+    </item>
+    <item>
+      <title>模拟徒步</title>
+      <link>https://happygames.pages.dev/hiking/</link>
+      <description>三条经典路线：熬太穿越、贡嘎大环线、乌孙古道</description>
+      <guid>https://happygames.pages.dev/hiking/</guid>
+      <pubDate>Thu, 24 Jul 2026 00:00:00 +0800</pubDate>
+    </item>
+    <item>
+      <title>迷宫逃脱</title>
+      <link>https://happygames.pages.dev/maze/</link>
+      <description>限时穿越随机迷宫，越难越大</description>
+      <guid>https://happygames.pages.dev/maze/</guid>
+      <pubDate>Thu, 24 Jul 2026 00:00:00 +0800</pubDate>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>模拟徒步</title>
+  <link rel="stylesheet" href="/shared/theme.css">
+  <link rel="stylesheet" href="/shared/game.css">
+  <link rel="stylesheet" href="/hiking/hiking.css">
+</head>
+<body>
+  <script type="module" src="/shared/game-runtime.js"></script>
+  <main class="game game-fun">
+    <header class="game-header">
+      <h1>模拟徒步</h1>
+      <a class="back" href="/fun/">← 返回趣味</a>
+    </header>
+
+    <div id="route-select" class="page route-select">
+      <h2>选择路线</h2>
+      <p class="sub">三条经典徒步路线，每一条都值得用脚步丈量</p>
+      <div id="route-cards" class="route-cards"></div>
+    </div>
+
+    <div id="gear-select" class="page hidden gear-select">
+      <div class="gs-top">
+        <a class="gs-back" id="btn-back-routes" href="#route-select">← 返回</a>
+        <h2 id="gear-route-name"></h2>
+      </div>
+      <div class="gs-box">
+        <div class="gs-label"><span class="gs-step">1</span> 选背包</div>
+        <div id="gear-backpack" class="bp-grid"></div>
+      </div>
+      <div class="gs-box">
+        <div class="gs-label"><span class="gs-step">2</span> 装包<span class="gs-hint">帐篷、食物必须带，注意总重量</span></div>
+        <div id="gear-grid" class="gear-grid"></div>
+        <div id="gear-weight" style="margin-top:10px;font-size:13px;color:var(--muted);text-align:right"></div>
+      </div>
+      <div class="gs-footer" id="gear-footer">
+        <div class="gs-info" id="gear-info"></div>
+        <div class="gs-actions">
+          <div id="gear-confirm"></div>
+          <button type="button" id="btn-start-hike" class="btn-primary" disabled>出发！</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="game-view" class="page hidden game-view">
+      <div class="gv-main">
+        <div class="gv-scene"><img id="scenery-img" class="" alt="沿途美景"><div class="sc-overlay"><span id="day-label" class="day-lbl"></span></div></div>
+        <div class="gv-profile"><svg id="profile-svg" viewBox="0 0 600 180" preserveAspectRatio="none"></svg></div>
+        <div class="gv-loc"><div class="loc-h"><span id="loc-index" class="li"></span><h3 id="loc-name"></h3><span id="loc-elevation" class="le"></span></div><p id="loc-desc"></p></div>
+        <div id="day-log" class="gv-log hidden"><div class="log-title">今日情况</div><div id="day-events" class="events"></div></div>
+        <div class="gv-act"><button type="button" id="btn-advance" class="btn-primary">前进 →</button></div>
+      </div>
+      <aside class="gv-side">
+        <div class="sg"><div class="lbl">路线</div><div id="route-name-display" class="rnd"></div></div>
+        <div class="sg"><div class="lbl">装备</div><div id="gear-display" class="gd"></div></div>
+        <div class="sg"><div class="lbl">🍖 食物</div><div id="food-inventory" class="fi"></div></div>
+        <div class="sg" id="medkit-area"></div>
+        <div class="sg"><div class="lbl">状态</div>
+          <div class="vg"><div class="vr"><span class="vl">体力</span><div class="vbw"><div id="vital-energy" class="vb"></div></div><span id="vital-energy-text" class="vt"></span></div>
+          <div class="vr"><span class="vl">健康</span><div class="vbw"><div id="vital-health" class="vb"></div></div><span id="vital-health-text" class="vt"></span></div></div>
+        </div>
+        <div class="sg"><div class="lbl">进度</div><div class="pbw"><div id="progress-bar" class="pb" style="width:0%"></div></div><div id="progress-text" class="pt"></div></div>
+        <div class="sg"><div class="stats-grid">
+          <div class="si"><div class="sv" id="stat-checkpoint">0/0</div><div class="sl">站点</div></div>
+          <div class="si"><div class="sv" id="stat-elevation">0m</div><div class="sl">海拔</div></div>
+          <div class="si"><div class="sv" id="stat-distance">0 km</div><div class="sl">行程</div></div>
+          <div class="si"><div class="sv" id="stat-failures">0/3</div><div class="sl">失误</div></div>
+        </div></div>
+        <button type="button" id="btn-route-back" class="reset-btn">放弃</button>
+      </aside>
+    </div>
+  </main>
+
+  <div class="modal hidden" id="win-modal"><div class="modal-backdrop"></div>
+    <div class="modal-card"><h2 class="win-title">🎉 成功</h2><p id="win-stats"></p>
+    <div class="modal-actions"><button type="button" id="win-new" class="btn-primary btn-sm">再来一次</button></div></div></div>
+  <div class="modal hidden" id="death-modal"><div class="modal-backdrop"></div>
+    <div class="modal-card death-card"><h2 class="death-title">💀 失败</h2><p id="death-reason"></p>
+    <div class="modal-actions"><button type="button" id="death-retry" class="btn-primary btn-sm">再试一次</button></div></div></div>
+
+  <script type="module" src="/hiking/hiking.js"></script>
+</body>
+</html>

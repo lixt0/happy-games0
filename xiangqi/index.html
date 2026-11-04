@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>中国象棋 · 快乐小游戏</title>
+  <link rel="stylesheet" href="/shared/theme.css">
+  <link rel="stylesheet" href="/shared/game.css">
+  <link rel="stylesheet" href="/xiangqi/xiangqi.css">
+</head>
+<body>
+  <script type="module" src="/shared/game-runtime.js"></script>
+  <main class="game game-board">
+    <header class="game-header">
+      <h1>中国象棋</h1>
+      <a class="back" href="/board/">← 返回棋类</a>
+    </header>
+
+    <section class="game-body xiangqi-body">
+      <div class="board-wrap">
+        <canvas id="board" width="528" height="584" aria-label="中国象棋棋盘"></canvas>
+      </div>
+
+      <aside class="controls">
+        <div class="stats">
+          <div class="stat-item">
+            <div class="stat-value" id="turn">红</div>
+            <div class="stat-label">轮到</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value" id="round">1</div>
+            <div class="stat-label">回合</div>
+          </div>
+        </div>
+
+        <div class="status" id="status" aria-live="polite">轮到你了，请走子</div>
+
+        <div class="hint">
+          <div class="label">玩法</div>
+          <p>你执 <b>红方</b>，AI 执黑方。点己方棋子选中，再点高亮位置走子。将被将死即胜。</p>
+        </div>
+
+        <div class="button-row">
+          <button type="button" id="reset" class="reset-btn">重开</button>
+          <button type="button" id="undo" class="reset-btn">悔棋</button>
+        </div>
+
+        <div class="ai-note" id="ai-note"></div>
+      </aside>
+    </section>
+  </main>
+
+  <div class="modal hidden" id="win-modal" role="dialog" aria-modal="true" aria-labelledby="win-title">
+    <div class="modal-backdrop"></div>
+    <div class="modal-card">
+      <h2 id="win-title" class="modal-title">对局结束</h2>
+      <p class="modal-text" id="win-text"></p>
+      <div class="modal-actions">
+        <button type="button" id="win-new" class="reset-btn">再来一局</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="/shared/a11y.js"></script>
+  <script type="module" src="/xiangqi/xiangqi.js"></script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="从出生到落幕，选择属于你的人生。">
+  <title>模拟人生 - 快乐小游戏</title>
+  <link rel="stylesheet" href="/shared/theme.css">
+  <link rel="stylesheet" href="/shared/game.css">
+  <link rel="stylesheet" href="/life/life.css?v=6">
+</head>
+<body>
+  <script type="module" src="/shared/game-runtime.js"></script>
+  <main class="game game-fun life-game">
+    <header class="game-header"><h1>模拟人生</h1><a class="back" href="/fun/">返回娱乐</a></header>
+    <section id="setup" class="life-setup">
+      <div class="life-intro"><p class="life-kicker">你的起点，不是结局</p><h2>从出生开始，见证一生</h2><p>分配 20 点天赋，每项最多 10 点。AI 会据此推演你从出生到死亡的整个人生。</p></div>
+      <div id="attribute-grid" class="attribute-grid"></div>
+      <div class="life-setup-footer"><span>剩余属性点 <b id="points-left">20</b></span><button id="begin-button" class="reset-btn" type="button" disabled>AI 推演人生</button></div>
+    </section>
+    <section id="game" class="life-layout hidden">
+      <aside class="life-profile"><div class="life-age"><span id="stage-name">童年</span><strong><b id="age">0</b> 岁</strong></div><div id="life-stats" class="life-stats"></div><div class="life-endline">预计寿命 <b id="max-age"></b> 岁</div></aside>
+      <section class="life-story"><div id="story-title" class="story-title"></div><p id="story-text" class="story-text"></p><div class="timeline-heading">AI 推演的人生轨迹</div><div id="timeline" class="life-timeline"></div></section>
+    </section>
+    <section id="ending" class="life-modal hidden" role="dialog" aria-modal="true" aria-labelledby="ending-title"><div class="life-modal-panel"><p class="life-kicker">人生落幕</p><h2 id="ending-title"></h2><p id="ending-text"></p><div id="ending-score" class="ending-score"></div><button id="restart" class="reset-btn" type="button">重新开始</button></div></section>
+  </main>
+  <script type="module" src="/shared/a11y.js"></script>
+  <script type="module" src="/life/life.js?v=9"></script>
+</body>
+</html>

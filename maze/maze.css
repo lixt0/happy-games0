@@ -1,0 +1,24 @@
+#canvas {
+  width: min(86vw, 560px) !important;
+  height: auto !important;
+  aspect-ratio: 1;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  background: var(--surface);
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  cursor: pointer;
+  max-width: 100%;
+  height: auto;
+}
+
+.hint {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+.hint b { color: var(--ink); }
+
+.reset-btn { flex: 1; }

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="光线折射：旋转镜子和分光器，让激光点亮所有晶体目标。">
+  <title>光线折射 · 快乐小游戏</title>
+  <link rel="stylesheet" href="/shared/theme.css">
+  <link rel="stylesheet" href="/shared/game.css">
+  <link rel="stylesheet" href="/refraction/refraction.css">
+</head>
+<body>
+  <script type="module" src="/shared/game-runtime.js"></script>
+  <main class="game game-puzzle refraction-game">
+    <header class="game-header">
+      <div><h1>光线折射</h1><p class="ref-subtitle">转动镜面，让每一枚晶体都被光点亮</p></div>
+      <div class="ref-header-actions"><button id="rules-btn" class="ref-rule-button" type="button">规则</button><a class="back" href="/puzzle/">返回益智</a></div>
+    </header>
+    <section class="ref-layout">
+      <div class="ref-board-shell">
+        <div class="ref-board-top"><span id="level-name">第 1 关 · 初见</span><span id="beam-state">0 / 1 晶体</span></div>
+        <div id="board" class="ref-board" aria-label="光线折射棋盘"></div>
+      </div>
+      <aside class="ref-side">
+        <div class="ref-progress"><div class="label">关卡进度</div><div id="level-picker" class="ref-level-picker"></div></div>
+        <div class="stats"><div class="stat-item"><div id="move-count" class="stat-value">0</div><div class="stat-label">旋转</div></div><div class="stat-item"><div id="best-count" class="stat-value">--</div><div class="stat-label">本关最佳</div></div></div>
+        <div class="ref-controls"><button id="hint-btn" class="diff-btn" type="button">提示</button><button id="reset-btn" class="reset-btn" type="button">重置本关</button></div>
+        <div id="message" class="ref-message">点击镜子旋转 90°，让光束命中全部晶体。</div>
+        <div class="hint"><div class="label">器件</div><p><b>斜镜</b>会改变光路方向；<b>分光器</b>会把一束光拆成两束；带锁的镜子不可旋转。</p></div>
+      </aside>
+    </section>
+    <div id="rules-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="rules-title">
+      <div class="modal-backdrop" data-close-rules></div><div class="modal-card ref-rules-card"><div class="ref-modal-heading"><h2 id="rules-title" class="modal-title">游戏规则</h2><button id="close-rules" class="ref-close" type="button" aria-label="关闭规则">×</button></div><ol><li>光源会持续发出光束。点击可动镜子，让它在 <b>/</b> 与 <b>\</b> 两种方向之间旋转。</li><li>光束被镜面反射后会继续前进，经过晶体即可点亮；所有晶体点亮才能过关。</li><li>紫色分光器会将一束光分为直行和右转两束。带锁图标的镜子是固定器件。</li><li>每关旋转次数越少越好。提示会短暂标出本关下一面需要调整的镜子。</li></ol></div>
+    </div>
+    <div id="win-modal" class="modal hidden" role="dialog" aria-modal="true"><div class="modal-backdrop"></div><div class="modal-card"><p class="ref-win-eyebrow">晶体全数点亮</p><h2 id="win-title" class="modal-title">折射完成</h2><p id="win-text" class="modal-text"></p><div class="modal-actions"><button id="retry-btn" class="diff-btn" type="button">重玩</button><button id="next-btn" class="reset-btn" type="button">下一关</button></div></div></div>
+  </main>
+  <script type="module" src="/shared/a11y.js"></script>
+  <script type="module" src="/refraction/refraction.js"></script>
+</body>
+</html>
